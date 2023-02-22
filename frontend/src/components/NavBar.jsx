@@ -10,6 +10,8 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
+import { NavLink } from 'react-router-dom';
+import "./NavBar.css"
 
 const pages = ['Search', 'About'];
 
@@ -24,11 +26,16 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
+  const activeClassName = "activeNavButton";
+  const inactiveClassName = "inactiveNavButton";
+
+  // https://www.color-hex.com/color-palette/53188
+
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
+    <AppBar sx={{backgroundColor: "#121212"}} position="static">
+      <Container maxWidth="false">
         <Toolbar disableGutters>
-          <EqualizerIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <EqualizerIcon sx={{color: "#1db954", display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -56,32 +63,52 @@ function ResponsiveAppBar() {
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'left',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: 'block', md: 'none' },
+                  "& .MuiPaper-root": {
+                    backgroundColor: "#212121"
+                  }
+                }}
+              >
+                {pages.map((page) => (
+                  <NavLink 
+                      to={(page === "Search" ? "/": "/" + page)}
+                      className={({isActive}) => 
+                        isActive ? activeClassName : inactiveClassName
+                      }
+                  >
+                    <MenuItem 
+                      key={page} 
+                      sx={{
+                        backgroundColor: "#212121", 
+                        color: "white",
+                        '&:hover': {
+                          backgroundColor: '#b3b3b3',
+                          color: '#212121'
+                        }
+                      }} 
+                      onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  </NavLink>
+                ))}
+              </Menu>
           </Box>
-          <EqualizerIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <EqualizerIcon sx={{color: "#1db954", display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
             variant="h5"
             noWrap
@@ -98,19 +125,33 @@ function ResponsiveAppBar() {
           >
             Spotify Song Stats
           </Typography>
-          <Box sx={{ flexGrow: 1, justifyContent: 'flex-end', display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{flexGrow: 1, justifyContent: 'flex-end', display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{my: 2, color: 'white', display: 'block' }}
+              <NavLink 
+                to={(page === "Search" ? "/": "/" + page)}
+                className={({isActive}) => 
+                  isActive ? activeClassName : inactiveClassName
+                }
               >
-                {page}
-              </Button>
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2, 
+                    color: 'white', 
+                    display: 'block', 
+                    fontWeight: 'inherit',
+                    '&:hover': {
+                      backgroundColor: '#b3b3b3',
+                      color: '#121212'
+                    }
+                  }}
+                >
+                  {page}
+                </Button>
+              </NavLink>
             ))}
           </Box>
-
-          
         </Toolbar>
       </Container>
     </AppBar>
