@@ -9,34 +9,71 @@ dotenv.config();
 */
 
 const spotify = new spotifyAPI({
-        clientId: process.env.CLIENT_ID,
-        clientSecret: process.env.CLIENT_SECRET
+    clientId: process.env.CLIENT_ID,
+    clientSecret: process.env.CLIENT_SECRET
 });
 
 // Authenticate using client credential flow
 async function authenticate() {
+    let data;
+
     try {
-        const data = await spotify.clientCredentialsGrant();
-        console.log(data.body);
-        spotify.setAccessToken(data.body.access_token);
-        console.log('The access token expires in ' + data.body.expires_in);
-        console.log('The access token is ' + data.body.access_token);
+        data = await spotify.clientCredentialsGrant();
     }
     catch (error) {
         console.log(error);
     }
+
+    console.log(data.body);
+    spotify.setAccessToken(data.body.access_token);
+    console.log('The access token expires in ' + data.body.expires_in);
+    console.log('The access token is ' + data.body.access_token);
 };
 
 async function getTracks(trackName) {
     const options = {};
-    const data = await spotify.searchTracks(trackName);
+    let data;
+
+    try {
+        data = await spotify.searchTracks(trackName);
+    }
+    catch (error) {
+        if (error.body.error.status === 401) {
+            // If 401 error, authenticate and try again.
+            // TODO: instead get new token a minute before the old one expires
+            console.log("auth error")
+            await authenticate();
+            data = await spotify.searchTracks(trackName);
+        }
+        else {
+            console.log(error);
+        }
+    }
+
     return {tracks: data.body.tracks.items};
 };
 
 async function getTrackStats(ID) {
     // https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features
-    const data = await spotify.getAudioFeaturesForTrack(ID);
+    let data;
+
+    try {
+        data = await spotify.getAudioFeaturesForTrack(ID);
+    }
+    catch (error) {
+        if (error.body.error.status === 401) {
+            // If 401 error, authenticate and try again.
+            // TODO: instead get new token a minute before the old one expires
+            console.log("auth error")
+            await authenticate();
+            data = await spotify.getAudioFeaturesForTrack(ID);
+        }
+        else {
+            console.log(error);
+        }
+    }
+    
     return {stats: data.body};
 };
 
-export { authenticate, getTracks, getTrackStats }; 
+export { getTracks, getTrackStats }; 
