@@ -32,7 +32,7 @@ function ResponsiveAppBar() {
   // https://www.color-hex.com/color-palette/53188
 
   return (
-    <AppBar sx={{backgroundColor: "#121212"}} position="static">
+    <AppBar sx={{backgroundColor: "#121212", mb: 7}} position="static">
       <Container maxWidth="false">
         <Toolbar disableGutters>
           <EqualizerIcon sx={{color: "#1db954", display: { xs: 'none', md: 'flex' }, mr: 1 }} />

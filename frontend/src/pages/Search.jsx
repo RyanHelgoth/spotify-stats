@@ -1,14 +1,15 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import SearchForm from "../components/SearchForm";
 import Box from '@mui/material/Box';
-//import Container from '@mui/material/Container';
+import NavBar from "../components/NavBar";
+import SearchBar from "../components/SearchBar";
+import SearchResults from "../components/SearchResults";
 
 function Search() {
   return (
-    <Box>
+    <Box sx={{textAlign: "center"}}>
       <NavBar />
-      <SearchForm />
+      <SearchBar />
+      <SearchResults />
     </Box>
   );
 };
