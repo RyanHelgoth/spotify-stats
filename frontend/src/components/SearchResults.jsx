@@ -1,12 +1,20 @@
 import React from "react";
-import Box from '@mui/material/Box';
+import List from '@mui/material/List';
+import Song from "./Song";
 
 // List of songs
-function SearchResults() {
+function SearchResults(props) {
+
+  function displaySongs() {
+    return props.songs.map(song => {
+        return <Song key={song.id} song={song}></Song>;
+    });
+  };
+
   return (
-    <Box sx={{textAlign: "center"}}>
-     
-    </Box>
+    <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+      {displaySongs()}
+    </List>
   );
 };
 

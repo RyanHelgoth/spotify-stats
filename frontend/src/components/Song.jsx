@@ -1,18 +1,62 @@
 import React from "react";
-import Box from '@mui/material/Box';
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Typography from "@mui/material/Typography";
+import ListItemButton from '@mui/material/ListItemButton';
+import { NavLink } from "react-router-dom";
+
 
 function Song(props) {
+  console.log(props.song);
+
+  function generateArtistText() {
+    let headerText;
+    let artistText;
+
+    if (props.song.artists.length === 1) {
+      headerText = "Artist: ";
+      artistText = props.song.artists[0];
+    }
+    else {
+      headerText = "Artists: ";
+      artistText = props.song.artists.join(" & ");
+    }
+
+    return headerText + artistText;
+  }
+
   return (
-    <Box >
-        <Button>
-            <Avatar alt="Artist Image" src={props.artistImg} />
-            <span>Song: {props.songName}</span>
-            <span>Artist: {props.artistName}</span>
-            <span>Album: {props.albumName}</span>
-        </Button>
-    </Box>
+    <NavLink 
+      to={`/stats/${props.song.id}`}
+      state={props.song}
+    >
+      
+    
+    <ListItemButton 
+      alignItems="flex-start"
+    >
+      <ListItemAvatar>
+        <Avatar alt="Cover Art" src={props.song.coverArt} />
+      </ListItemAvatar>
+      <ListItemText
+        primary={`Song: ${props.song.songName}`}
+        secondary={
+          <React.Fragment>
+            <Typography
+              sx={{ display: 'block' }}
+              component="span"
+              variant="body2"
+              color="text.primary"
+            >
+              {generateArtistText()}
+            </Typography>
+            {`\n Album: ${props.song.albumName}`}
+          </React.Fragment>
+        }
+      />
+    </ListItemButton>
+    </NavLink>
   );
 };
 

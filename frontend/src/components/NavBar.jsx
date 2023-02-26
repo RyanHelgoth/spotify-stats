@@ -30,6 +30,7 @@ function ResponsiveAppBar() {
   const inactiveClassName = "inactiveNavButton";
 
   // https://www.color-hex.com/color-palette/53188
+  // TODO add key for nav links
 
   return (
     <AppBar sx={{backgroundColor: "#121212", mb: 7}} position="static">

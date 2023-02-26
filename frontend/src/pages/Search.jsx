@@ -22,7 +22,7 @@ function Search() {
         playLink: song.uri,
         albumName: song.album.name,
         albumType: song.album.album_type,
-        coverArt: song.album.images[0], // Large image
+        coverArt: song.album.images[0].url, // Large image
         releaseDate: song.album.release_date,
         artists: song.artists.map(artist => artist.name),
         songNumber: song.track_number,
@@ -43,11 +43,11 @@ function Search() {
     setSongs(extractedSongs);
   };
 
+ 
   return (
     <Box sx={{textAlign: "center"}}>
       <NavBar />
       <SearchBar onSearch={getSongs}/>
-      <p>{songs.map(song => JSON.stringify(song)).toString()}</p> 
       <SearchResults songs={songs}/>
     </Box>
   );
