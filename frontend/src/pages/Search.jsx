@@ -5,10 +5,24 @@ import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 
 function Search() {
+  const [songs, setSongs] = React.useState([]);
+
+  function getSongs(query) {
+    const PATH = "api/tracks";
+    const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH + "?track-name=" + query);
+    fetch(URL)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          console.log(data);
+      });
+  };
+
   return (
     <Box sx={{textAlign: "center"}}>
       <NavBar />
-      <SearchBar />
+      <SearchBar onSearch={getSongs}/>
       <SearchResults />
     </Box>
   );

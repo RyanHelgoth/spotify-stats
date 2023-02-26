@@ -5,13 +5,21 @@ import SearchIcon from '@mui/icons-material/Search';
 
 
 // https://stackoverflow.com/questions/52911169/how-to-change-the-border-color-of-mui-textfield
-function SearchBar() {
+function SearchBar(props) {
+    const [query, setQuery] = React.useState("");
+
+    function updateQuery(event) {
+        setQuery(event.target.value);
+    }
+
     return (
         <TextField
             id="filled-search"
-            label="Song Name"
+            label="Search Song Name"
             type="text"
             variant="outlined"
+            value={query}
+            onChange={updateQuery}
             InputProps={{
                 endAdornment: (
                     <IconButton
@@ -19,7 +27,7 @@ function SearchBar() {
                         //TODO implment button functionality 
                         // and enter button functionality
                         // https://stackoverflow.com/a/65197663
-                        //onClick={() => setValue("")}
+                        onClick={() => props.onSearch(query)}
                     >    
                         <SearchIcon sx={{color: "white"}}/>
                     </IconButton>
