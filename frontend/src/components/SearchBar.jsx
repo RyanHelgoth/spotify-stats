@@ -17,6 +17,10 @@ function SearchBar(props) {
         if (query.trim() !== "" ) {
             await props.onSearch(query);
         }
+        else {
+            // TODO add warning message
+            console.log("bruh");
+        }
         setQuery("");
     };
 
@@ -25,8 +29,6 @@ function SearchBar(props) {
             await handleSearch();
         }
     };
-
-
 
     return (
         <TextField
@@ -41,7 +43,7 @@ function SearchBar(props) {
                 endAdornment: (
                     <IconButton
                         // https://stackoverflow.com/a/65197663
-                        onClick={async () => await handleSearch()}
+                        onClick={handleSearch}
                     >    
                         <SearchIcon sx={{color: "white"}}/>
                     </IconButton>

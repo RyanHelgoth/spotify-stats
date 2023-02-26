@@ -7,19 +7,48 @@ import SearchResults from "../components/SearchResults";
 function Search() {
   const [songs, setSongs] = React.useState([]);
 
+  function extractSongs(data) {
+    const extractedSongs = data.tracks.map(song => {
+      /* 
+        Excluded song duration because it is also included
+        in data returned by song audio features spotify api request.
+      */
+      return {
+        id: song.id,
+        songName: song.name,
+        explicit: song.explicit, 
+        popularity: song.popularity,
+        link: song.external_urls.spotify,
+        playLink: song.uri,
+        albumName: song.album.name,
+        albumType: song.album.album_type,
+        coverArt: song.album.images[0], // Large image
+        releaseDate: song.album.release_date,
+        artists: song.artists.map(artist => artist.name),
+        songNumber: song.track_number,
+        albumSongAmount: song.album.total_tracks,
+        discNumber: song.disc_number
+      };
+    });
+
+    return extractedSongs;
+  };
+
   async function getSongs(query) {
     const PATH = "api/tracks";
     const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH + "?track-name=" + query);
     const response = await fetch(URL);
     const data = await response.json();
-    console.log(data);
+    const extractedSongs = extractSongs(data);
+    setSongs(extractedSongs);
   };
 
   return (
     <Box sx={{textAlign: "center"}}>
       <NavBar />
       <SearchBar onSearch={getSongs}/>
-      <SearchResults />
+      <p>{songs.map(song => JSON.stringify(song)).toString()}</p> 
+      <SearchResults songs={songs}/>
     </Box>
   );
 };
