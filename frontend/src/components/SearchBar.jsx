@@ -10,7 +10,23 @@ function SearchBar(props) {
 
     function updateQuery(event) {
         setQuery(event.target.value);
-    }
+    };
+
+    async function handleSearch() {
+        // Do not send request if query is only spaces
+        if (query.trim() !== "" ) {
+            await props.onSearch(query);
+        }
+        setQuery("");
+    };
+
+    async function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            await handleSearch();
+        }
+    };
+
+
 
     return (
         <TextField
@@ -20,14 +36,12 @@ function SearchBar(props) {
             variant="outlined"
             value={query}
             onChange={updateQuery}
+            onKeyPress={handleKeyPress}
             InputProps={{
                 endAdornment: (
                     <IconButton
-                        aria-label="toggle password visibility"
-                        //TODO implment button functionality 
-                        // and enter button functionality
                         // https://stackoverflow.com/a/65197663
-                        onClick={() => props.onSearch(query)}
+                        onClick={async () => await handleSearch()}
                     >    
                         <SearchIcon sx={{color: "white"}}/>
                     </IconButton>

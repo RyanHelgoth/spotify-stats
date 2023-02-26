@@ -7,16 +7,12 @@ import SearchResults from "../components/SearchResults";
 function Search() {
   const [songs, setSongs] = React.useState([]);
 
-  function getSongs(query) {
+  async function getSongs(query) {
     const PATH = "api/tracks";
     const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH + "?track-name=" + query);
-    fetch(URL)
-        .then(res => {
-          return res.json();
-        })
-        .then(data => {
-          console.log(data);
-      });
+    const response = await fetch(URL);
+    const data = await response.json();
+    console.log(data);
   };
 
   return (
