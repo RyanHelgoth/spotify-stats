@@ -31,31 +31,29 @@ function Song(props) {
       to={`/stats/${props.song.id}`}
       state={props.song}
     >
-      
-    
-    <ListItemButton 
-      alignItems="flex-start"
-    >
-      <ListItemAvatar>
-        <Avatar alt="Cover Art" src={props.song.coverArt} />
-      </ListItemAvatar>
-      <ListItemText
-        primary={`Song: ${props.song.songName}`}
-        secondary={
-          <React.Fragment>
-            <Typography
-              sx={{ display: 'block' }}
-              component="span"
-              variant="body2"
-              color="text.primary"
-            >
-              {generateArtistText()}
-            </Typography>
-            {`\n Album: ${props.song.albumName}`}
-          </React.Fragment>
-        }
-      />
-    </ListItemButton>
+      <ListItemButton 
+        alignItems="flex-start"
+      >
+        <ListItemAvatar>
+          <Avatar alt="Cover Art" src={props.song.coverArt} />
+        </ListItemAvatar>
+        <ListItemText
+          primary={`Song: ${props.song.songName}`}
+          secondary={
+            <React.Fragment>
+              <Typography
+                sx={{ display: 'block' }}
+                component="span"
+                variant="body2"
+                color="text.primary"
+              >
+                {generateArtistText()}
+              </Typography>
+              {`\n Album: ${props.song.albumName}`}
+            </React.Fragment>
+          }
+        />
+      </ListItemButton>
     </NavLink>
   );
 };

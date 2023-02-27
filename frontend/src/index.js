@@ -5,6 +5,7 @@ import App from "./components/App";
 import "./index.css";
 
 // https://hygraph.com/blog/routing-in-react
+//TODO get rid of strict mode when done development
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

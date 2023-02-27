@@ -76,4 +76,28 @@ async function getTrackStats(ID) {
     return {stats: data.body};
 };
 
-export { getTracks, getTrackStats }; 
+
+async function getTrack(ID) {
+    // https://developer.spotify.com/documentation/web-api/reference/#/operations/get-audio-features
+    let data;
+
+    try {
+        data = await spotify.getTrack(ID);
+    }
+    catch (error) {
+        if (error.body.error.status === 401) {
+            // If 401 error, authenticate and try again.
+            // TODO: instead get new token a minute before the old one expires
+            console.log("auth error")
+            await authenticate();
+            data = await spotify.getTrack(ID);
+        }
+        else {
+            console.log(error);
+        }
+    }
+    
+    return {track: data.body};
+};
+
+export { getTracks, getTrackStats, getTrack }; 
