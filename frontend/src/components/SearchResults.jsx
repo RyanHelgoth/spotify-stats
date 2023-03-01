@@ -4,6 +4,7 @@ import Song from "./Song";
 import { Divider } from "@mui/material";
 import { Box } from "@mui/system";
 
+
 // List of songs
 function SearchResults(props) {
 
@@ -19,14 +20,15 @@ function SearchResults(props) {
   };
 
   return (
-    props.songs.length !== 0 && <List sx={{ 
-      borderRadius: "5px",
-      width: {xs: "80%", sm: "60%", md: "50%", lg: "40%", xl: "40%"}, 
-      bgcolor: "#b3b3b3"
-      }}
-    > 
-      {displaySongs()}
-    </List>
+    props.songs.length !== 0 && 
+      <List sx={{ 
+        borderRadius: "5px",
+        width: {xs: "80%", sm: "60%", md: "50%", lg: "40%", xl: "40%"}, 
+        bgcolor: "#b3b3b3"
+        }}
+      > 
+        {displaySongs()}
+      </List>
   );
 };
 
