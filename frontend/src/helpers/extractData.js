@@ -13,16 +13,17 @@ function getTimeSignature(timeSigNum) {
 }
 
 
-function getPercentageString(float) {
-  const percentage = (float * 100).toFixed(2);
-  return `${percentage}%`;
+function getPercentage(float) {
+  return (float * 100);
 }
 
 function extractSong(data) {
   const song = data.track;
     /* 
-      Excluded song duration because it is also included
+      -Excluded song duration because it is also included
       in data returned by song audio features spotify api request.
+
+      -Left out genres because api no longer support getting genres.
     */
   return {
     id: song.id,
@@ -44,10 +45,13 @@ function extractSong(data) {
 
 
   function extractSongs(data) {
+    console.log(data);
     const extractedSongs = data.tracks.map(song => {
       /* 
         Excluded song duration because it is also included
         in data returned by song audio features spotify api request.
+
+        -Left out genres because api no longer support getting genres.
       */
       return {
         id: song.id,
@@ -74,18 +78,18 @@ function extractSong(data) {
   function extractSongStats(song) {
     const stats = song.stats;
     return {
-      acousticness: stats.acousticness,
-      danceability: stats.danceability,
-      energy: stats.energy,
-      instrumentalness: stats.instrumentalness,
+      acousticness: getPercentage(stats.acousticness),
+      danceability: getPercentage(stats.danceability),
+      energy: getPercentage(stats.energy),
+      instrumentalness: getPercentage(stats.instrumentalness),
       key: getMusicalKey(stats.key),
-      liveness: stats.liveness,
+      liveness: getPercentage(stats.liveness),
       loudness: stats.loudness,
       mode: getMusicalMode(stats.mode),
-      speechiness: stats.speechiness,
+      speechiness: getPercentage(stats.speechiness),
       bpm: stats.tempo,
       timeSignature: getTimeSignature(stats.time_signature),
-      valence: stats.valence
+      valence: getPercentage(stats.valence)
     };
   };
 
