@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { extractSong, extractSongStats } from "../helpers/extractData.js"
 import SongInfo from "../components/SongInfo";
 import SongStats from "../components/SongStats";
+import Box from '@mui/material/Box';
 
 
 function Stats() {
@@ -88,13 +89,17 @@ function Stats() {
   }, [songStats]);
 
 
-
+  //TODO set breakpoints
   return (
-    <div>
+    <Box >
       <NavBar />
-      {displayInfo()}
-      <SongStats stats={songStats}/>
-    </div>
+      <Box sx={{display: "flex", justifyContent: "center", maxWidth: true, flexWrap: "wrap"}}>
+          <SongStats style={{flexGrow: 1}} stats={songStats}/>
+          <SongStats style={{flexGrow: 1}} stats={songStats}/>
+      </Box>
+    </Box>
+      
+  
   );
 };
 

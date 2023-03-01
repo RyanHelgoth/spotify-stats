@@ -13,10 +13,6 @@ function getTimeSignature(timeSigNum) {
 }
 
 
-function getPercentage(float) {
-  return (float * 100);
-}
-
 function extractSong(data) {
   const song = data.track;
     /* 
@@ -78,18 +74,18 @@ function extractSong(data) {
   function extractSongStats(song) {
     const stats = song.stats;
     return {
-      acousticness: getPercentage(stats.acousticness),
-      danceability: getPercentage(stats.danceability),
-      energy: getPercentage(stats.energy),
-      instrumentalness: getPercentage(stats.instrumentalness),
-      key: getMusicalKey(stats.key),
-      liveness: getPercentage(stats.liveness),
+      acousticness: stats.acousticness,
+      danceability: stats.danceability,
+      energy: stats.energy,
+      instrumentalness: stats.instrumentalness,
+      key: stats.key,
+      liveness: stats.liveness,
       loudness: stats.loudness,
-      mode: getMusicalMode(stats.mode),
-      speechiness: getPercentage(stats.speechiness),
+      mode: stats.mode,
+      speechiness: stats.speechiness,
       bpm: stats.tempo,
-      timeSignature: getTimeSignature(stats.time_signature),
-      valence: getPercentage(stats.valence)
+      timeSignature: stats.time_signature,
+      valence: stats.valence
     };
   };
 
