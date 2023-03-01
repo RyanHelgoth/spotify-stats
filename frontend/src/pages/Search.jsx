@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 import { extractSongs } from "../helpers/extractData.js"
+import { Stack } from "@mui/system";
 
 function Search() {
   const [songs, setSongs] = React.useState([]);
@@ -19,11 +20,16 @@ function Search() {
 
  
   return (
-    <Box sx={{textAlign: "center"}}>
+    <Stack 
+      width="100%" 
+      spacing={4} 
+      alignItems="center"
+      mb="7%"
+      >
       <NavBar />
       <SearchBar onSearch={getSongs}/>
       <SearchResults songs={songs}/>
-    </Box>
+    </Stack>
   );
 };
 

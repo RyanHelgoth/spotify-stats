@@ -30,6 +30,7 @@ function Song(props) {
     <NavLink 
       to={`/stats/${props.song.id}`}
       state={props.song}
+      style={{textDecoration: "none"}}
     >
       <ListItemButton 
         alignItems="flex-start"
@@ -38,19 +39,26 @@ function Song(props) {
           <Avatar alt="Cover Art" src={props.song.coverArt} />
         </ListItemAvatar>
         <ListItemText
+          sx={{color: "white"}}
           primary={`Song: ${props.song.songName}`}
           secondary={
-            <React.Fragment>
+            <React.Fragment >
               <Typography
-                sx={{ display: 'block' }}
+                sx={{ display: 'block', color:"white" }}
                 component="span"
                 variant="body2"
-                color="text.primary"
               >
                 {generateArtistText()}
               </Typography>
-              {`\n Album: ${props.song.albumName}`}
+              <Typography
+                sx={{ display: 'block', color:"white"}}
+                component="span"
+                variant="body2"
+              >
+                {`\n Album: ${props.song.albumName}`}
+              </Typography>
             </React.Fragment>
+            
           }
         />
       </ListItemButton>
