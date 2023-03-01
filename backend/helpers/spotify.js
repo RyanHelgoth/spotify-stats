@@ -31,11 +31,11 @@ async function authenticate() {
 };
 
 async function getTracks(trackName) {
-    const options = {};
+    const options = {limit: 50};
     let data;
 
     try {
-        data = await spotify.searchTracks(trackName);
+        data = await spotify.searchTracks(trackName, options);
     }
     catch (error) {
         if (error.body.error.status === 401) {
@@ -43,7 +43,7 @@ async function getTracks(trackName) {
             // TODO: instead get new token a minute before the old one expires
             console.log("auth error")
             await authenticate();
-            data = await spotify.searchTracks(trackName);
+            data = await spotify.searchTracks(trackName, options);
         }
         else {
             console.log(error);

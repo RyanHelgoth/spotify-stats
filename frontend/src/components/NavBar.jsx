@@ -33,7 +33,7 @@ function ResponsiveAppBar() {
   // TODO add key for nav links
 
   return (
-    <AppBar sx={{backgroundColor: "#121212", mb: 5}} position="sticky">
+    <AppBar sx={{backgroundColor: "#121212", mb: 7}} position="sticky">
       <Container maxWidth="false">
         <Toolbar disableGutters>
           <EqualizerIcon sx={{color: "#1ed760", display: { xs: 'none', md: 'flex' }, mr: 1 }} />

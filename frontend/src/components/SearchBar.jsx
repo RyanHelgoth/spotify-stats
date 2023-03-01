@@ -56,9 +56,6 @@ function SearchBar(props) {
                     backgroundColor: "#b3b3b3",
                     color: "white"
                 },
-                "& .MuiInputBase-root:hover": {
-                    boxShadow: 3
-                },
                 "& .MuiInputLabel-root": {
                     color: "white"
                 },
