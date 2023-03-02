@@ -94,7 +94,7 @@ function Stats() {
     <Box >
       <NavBar />
       <Box sx={{display: "flex", justifyContent: "center", maxWidth: true, flexWrap: "wrap"}}>
-          <SongStats style={{flexGrow: 1}} stats={songStats}/>
+          <SongInfo song={song} stats={songStats}/>
           <SongStats style={{flexGrow: 1}} stats={songStats}/>
       </Box>
     </Box>
