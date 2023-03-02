@@ -10,6 +10,7 @@ import { CircularProgress } from '@mui/material';
 import ExplicitIcon from '@mui/icons-material/Explicit';
 import InfoTable from './InfoTable';
 import Link from '@mui/material/Link';
+import PopularityMeter from './PopularityMeter';
 
 
 //TODO fade in
@@ -39,6 +40,7 @@ function SongInfo(props) {
           {props.song.albumName}
         </Typography>
         <InfoTable song={props.song} stats={props.stats}/>
+        <PopularityMeter value={props.song.popularity}/>
       </CardContent>
       <CardActions>
       <Link href={props.song.playLink}>
