@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 function PopularityMeter(props) {
+  //TODO animate bar
+
   return (
     <Box sx={{ position: 'relative', display: "inline-flex"}}>
       <CircularProgress
@@ -12,7 +14,7 @@ function PopularityMeter(props) {
         sx={{
           color: "white",
         }}
-        size={140}
+        size={300}
         thickness={4}
         {...props}
         value={100}
@@ -24,8 +26,11 @@ function PopularityMeter(props) {
           color: "#1DB954",
           position: 'absolute',
           left: 0,
+          "& 	.MuiCircularProgress-root": {
+            animationDuration: "8s"
+          }
         }}
-        size={140}
+        size={300}
         thickness={4}
         value={props.value}
         {...props}
@@ -47,7 +52,7 @@ function PopularityMeter(props) {
           component="div" 
           color="white"
           textAlign="center"
-          fontSize={16}
+          fontSize={24}
           pl={5}
           pr={5}
         >

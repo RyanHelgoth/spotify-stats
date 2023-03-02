@@ -6,6 +6,8 @@ import { extractSong, extractSongStats } from "../helpers/extractData.js"
 import SongInfo from "../components/SongInfo";
 import SongStats from "../components/SongStats";
 import Box from '@mui/material/Box';
+import PopularityMeter from "../components/PopularityMeter";
+import { Stack } from "@mui/material";
 
 
 function Stats() {
@@ -93,9 +95,25 @@ function Stats() {
   return (
     <Box >
       <NavBar />
-      <Box sx={{display: "flex", justifyContent: "center", maxWidth: true, flexWrap: "wrap"}}>
+      <Box sx={{
+        display: "flex", 
+        justifyContent: "center", 
+        maxWidth: true, 
+        flexWrap: "wrap",
+        mb: 7
+      }}
+      >
           <SongInfo song={song} stats={songStats}/>
-          <SongStats style={{flexGrow: 1}} stats={songStats}/>
+          <Stack 
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
+            mt={5}
+          >
+            <PopularityMeter value={song ? song.popularity : 0}/>
+            <SongStats stats={songStats}/>
+          </Stack>
+          
       </Box>
     </Box>
       

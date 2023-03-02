@@ -1,0 +1,20 @@
+#play-icon {
+  opacity: 0;
+  transition: 0.25s ease-in-out;
+}
+
+#album-cover {
+  opacity: 1;
+  transition: 0.25s ease-in-out;
+}
+    
+#album-box:hover > #play-icon {
+  opacity: 1;
+  transition: 0.25s ease-in-out;
+}
+
+#album-box:hover > #album-cover {
+  opacity: 0.5;
+  transition: 0.25s ease-in-out;
+}
+

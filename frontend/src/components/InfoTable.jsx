@@ -20,30 +20,35 @@ function InfoTable(props) {
   
   const rows = [
     createData('Album Type', props.song.albumType),
-    createData(getDateFormat(props.song.releasePrecision), props.song.releaseDate), //TODO check if date format is correct
-    createData('Song Number', `${props.song.songNumber} on disc ${props.song.discNumber}`),
-    createData('Key', getKeyString(props.stats.musicalKey, props.stats.mode)),
-    createData('Loudness', `${props.stats.loudness} dB`),
     createData('BPM', props.stats.bpm),
     createData('Duration', formatDuration(props.song.duration)),
+    createData('Key', getKeyString(props.stats.musicalKey, props.stats.mode)),
+    createData('Loudness', `${props.stats.loudness} dB`),
+    createData(getDateFormat(props.song.releasePrecision), props.song.releaseDate), 
+    createData('Song Number', `${props.song.songNumber} on disc ${props.song.discNumber}`),
     createData('Time Signature', getTimeSigString(props.stats.timeSignature))
   ];   
 
 
 
   return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 300 }} aria-label="simple table">
+    <TableContainer >
+      <Table 
+        sx={{ 
+          minWidth: 300,
+          bgcolor: "#b3b3b3"
+        }} 
+      >
         <TableBody>
           {rows.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
             >
-              <TableCell component="th" scope="row">
+              <TableCell component="th" scope="row" sx={{color: "white"}}>
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.value}</TableCell>
+              <TableCell align="right" sx={{color: "white"}}>{row.value}</TableCell>
             </TableRow>
           ))}
         </TableBody>
