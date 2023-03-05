@@ -8,6 +8,7 @@ import cors from "cors";
 dotenv.config();
 const app = express();
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.use(cors());
 const PORT = process.env.PORT || "4000";
 
@@ -36,7 +37,8 @@ app.get("/api/top-searched-songs", async (req, res) => {
 });
 
 app.post("/api/searched-song", async (req, res) => {
-    const song = req.body.song;
+    console.log(req.body)
+    const song = req.body;
     const status = await upsertSong(song);
     let message;
 

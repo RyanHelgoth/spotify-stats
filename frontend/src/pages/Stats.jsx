@@ -14,42 +14,22 @@ function Stats() {
   const location = useLocation();
   const [song, setSong] = useState(null);
   const [songStats, setSongStats] = useState(null);
-  const [forceRender, setForceRender] = useState(false);
 
-  function displayInfo() {
-    if (song) {
-      return <SongInfo song={song}/>;
-    }
-    else {
-      return <h1>Loading...</h1>
-    }
-  };
-
-  function displayStats() {
-    if (songStats) {
-      return <SongStats stats={songStats}/>;
-    }
-    else {
-      return <h1>Loading...</h1>
-    }
-  };
-
-  
-  
-  
   useEffect(() => {
     // Set songStats on render
     const songID = location.pathname.slice(7);
     
     async function getSongStats(ID) {
-      const PATH = `api/track-stats/${ID}`;
-      const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH);
-      const response = await fetch(URL);
+      const path = `api/track-stats/${ID}`;
+      const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
+      const response = await fetch(url);
       const song = await response.json();
       // data contains data of one song so it must be put into an array to get song object
       const stats = extractSongStats(song);
       setSongStats(stats);
     }
+
+    
 
     getSongStats(songID);
 
@@ -75,9 +55,9 @@ function Stats() {
     if (songStats && !location.state) {
       const songID = location.pathname.slice(7);
       async function getSong(ID) {
-        const PATH = `api/track/${ID}`;
-        const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH);
-        const response = await fetch(URL);
+        const path = `api/track/${ID}`;
+        const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
+        const response = await fetch(url);
         const song = await response.json();
         
         // data contains data of one song so it must be put into an array to get song object
@@ -89,6 +69,29 @@ function Stats() {
       getSong(songID);
     }
   }, [songStats]);
+
+
+  // Increment song's search count in db
+  useEffect(() => {
+    if (song) {
+      async function addSearch(song) {
+        const path = "api/searched-song"
+        const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
+        const options = {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(song)
+        };
+        await fetch(url, options);
+      }
+
+      addSearch(song);
+    }
+  }, [song]);
 
 
   //TODO set breakpoints
