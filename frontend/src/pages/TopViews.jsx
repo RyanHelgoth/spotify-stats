@@ -16,6 +16,7 @@ function TopViews() {
   const [songs, setSongs] = React.useState([]);
   const [displayIndices, setDisplayIndices] = React.useState([0, 5]);
   const [loading, setLoading] = React.useState(false);
+  const [dbIsEmpty, setDBIsEmpty] = React.useState(false);
 
   React.useEffect(() => {
     async function getTopSongs() {
@@ -26,8 +27,13 @@ function TopViews() {
       const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH);
       const response = await fetch(URL);
       const songs = await response.json();
-      const rankedSongs = rankTopSongs(songs);
-      setSongs(rankedSongs);
+      if (songs.length !== 0) {
+        const rankedSongs = rankTopSongs(songs);
+        setSongs(rankedSongs);
+      }
+      else {
+        setDBIsEmpty(true);
+      }
       setLoading(false);
     };
 
@@ -91,7 +97,11 @@ function TopViews() {
       >
       
       <Typography variant="h5" color="white">
-        Top Viewed Song Stats This Month
+        {
+          dbIsEmpty ? 
+          "No Song Stats Have Been Viewed Yet This Month" : 
+          "Top Viewed Song Stats This Month"
+        }
       </Typography>
       <SearchResults songs={songs.slice(displayIndices[0], displayIndices[1])}/>
       {displayPagination()}

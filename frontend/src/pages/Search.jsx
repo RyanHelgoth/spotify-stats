@@ -35,9 +35,13 @@ function Search() {
       getSongs(query);
     }
     else {
+      // If no query, dont display any songs
       setSongs([]);
     }
-  }, [searchParams])
+
+    // Reset page position on new query
+    handlePageChange(null, 1);
+  }, [searchParams]);
 
   function setQuery(query) {
     setSearchParams({query: query});
