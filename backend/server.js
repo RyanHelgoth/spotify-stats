@@ -31,7 +31,7 @@ app.get("/api/track-stats/:trackID", async (req, res) => {
     res.send(stats);
 });
 
-app.get("/api/top-searched-songs", async (req, res) => {
+app.get("/api/top-viewed-songs", async (req, res) => {
     const songs = await getSongs();
     res.send(songs);
 });

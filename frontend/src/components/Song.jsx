@@ -57,6 +57,13 @@ function Song(props) {
               >
                 {`\n Album: ${props.song.albumName}`}
               </Typography>
+              {typeof props.song.rank !== "undefined"  && <Typography
+                sx={{ display: 'block', color:"white"}}
+                component="span"
+                variant="body2"
+              >
+                {`\n Rank: ${props.song.rank}`}
+              </Typography>}
             </React.Fragment>
             
           }

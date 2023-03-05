@@ -83,8 +83,22 @@ function formatDuration(duration) {
   durationString += secondsStr;
   return durationString;
 }
+
+function rankTopSongs(songs) {
+  // Using spread to return new array
+  const sortedSongs = [...songs].sort((lSong, rSong) => {
+    return rSong.searches - lSong.searches;
+  });
+
+  const rankedSongs = sortedSongs.map((song, index) => {
+    song.rank = index + 1;
+    return song;
+  });
+
+  return rankedSongs;
+}
   
 
   
 
-export { getKeyString, getTimeSigString, getDateFormat, formatDuration};
+export { getKeyString, getTimeSigString, getDateFormat, formatDuration, rankTopSongs};
