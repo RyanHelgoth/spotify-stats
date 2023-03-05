@@ -2,11 +2,24 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from '@mui/icons-material/Search';
+import { useSearchParams } from 'react-router-dom';
 
 
 // https://stackoverflow.com/questions/52911169/how-to-change-the-border-color-of-mui-textfield
 function SearchBar(props) {
+    const [searchParams, setSearchParams] = useSearchParams();
     const [query, setQuery] = React.useState("");
+
+    // Set search bar text to url query
+    React.useEffect(() => {
+        const urlQuery = searchParams.get("query");
+        if (urlQuery) {
+            setQuery(urlQuery);
+        }
+        else {
+            setQuery("");
+        }
+    }, [searchParams]);
 
     function updateQuery(event) {
         setQuery(event.target.value);
@@ -21,7 +34,6 @@ function SearchBar(props) {
             // TODO add warning message
             console.log("bruh");
         }
-        setQuery("");
     };
 
     async function handleKeyPress(event) {
@@ -33,7 +45,7 @@ function SearchBar(props) {
     return (
         <TextField
             id="filled-search"
-            label="Search Song Name"
+            label="Search Song"
             type="text"
             variant="outlined"
             value={query}

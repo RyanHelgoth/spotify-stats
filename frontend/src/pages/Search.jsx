@@ -8,23 +8,42 @@ import { Pagination } from "@mui/material";
 import { Collapse, Divider, Fade, Grow, Slide, Zoom } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import {Box} from "@mui/material";
+import { useSearchParams } from "react-router-dom";
+
 function Search() {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [songs, setSongs] = React.useState([]);
   const [displayIndices, setDisplayIndices] = React.useState([0, 5]);
   const [loading, setLoading] = React.useState(false);
 
-  async function getSongs(query) {
-    // Reset songs so loading animation shows after first search
-    setSongs([]); 
-    setLoading(true);
-    const PATH = "api/tracks";
-    const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH + "?track-name=" + query);
-    const response = await fetch(URL);
-    const data = await response.json();
-    const extractedSongs = extractSongs(data);
-    setSongs(extractedSongs);
-    setLoading(false);
-  };
+  React.useEffect(() => {
+    const query = searchParams.get("query");
+    if (query !== null) {
+      async function getSongs(query) {
+        // Reset songs so loading animation shows after first search
+        setSongs([]); 
+        setLoading(true);
+        const PATH = "api/tracks";
+        const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH + "?track-name=" + query);
+        const response = await fetch(URL);
+        const data = await response.json();
+        const extractedSongs = extractSongs(data);
+        setSongs(extractedSongs);
+        setLoading(false);
+      };
+      getSongs(query);
+    }
+    else {
+      setSongs([]);
+    }
+  }, [searchParams])
+
+  function setQuery(query) {
+    setSearchParams({query: query});
+  }
+
+  
 
   function handlePageChange(event, page) {
     console.log(page)
@@ -40,7 +59,7 @@ function Search() {
       return (
         <Fade in unmountOnExit timeout={350}>
           <Pagination 
-            count={10} 
+            count={Math.ceil(songs.length/5)} 
             variant="text"
             shape="rounded"
             size="large"
@@ -81,7 +100,7 @@ function Search() {
       mb="7%"
       >
       
-      <SearchBar onSearch={getSongs}/>
+      <SearchBar onSearch={setQuery}/>
       <SearchResults songs={songs.slice(displayIndices[0], displayIndices[1])}/>
       {displayPagination()}
     </Stack>

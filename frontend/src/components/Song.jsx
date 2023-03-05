@@ -62,7 +62,7 @@ function Song(props) {
                 component="span"
                 variant="body2"
               >
-                {`\n Rank: ${props.song.rank}`}
+                {`\n Ranking: #${props.song.rank}`}
               </Typography>}
             </React.Fragment>
             

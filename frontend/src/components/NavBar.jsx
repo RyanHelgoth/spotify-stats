@@ -13,7 +13,7 @@ import EqualizerIcon from '@mui/icons-material/Equalizer';
 import { NavLink } from 'react-router-dom';
 import "./NavBar.css"
 
-const pages = ['search', 'top viewed songs', 'about'];
+const pages = ['search', 'top songs', 'about'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -89,7 +89,7 @@ function ResponsiveAppBar() {
                   <NavLink 
                       // regex to remove spaces
                       // https://stackoverflow.com/a/48678145
-                      to={page === "search" ? "/": "/" + page.replace(/\s+/g,"-")}
+                      to={"/" + page.replace(/\s+/g,"-")}
                       className={({isActive}) => 
                         isActive ? activeClassName : inactiveClassName
                       }
@@ -131,7 +131,7 @@ function ResponsiveAppBar() {
           <Box sx={{flexGrow: 1, justifyContent: 'flex-end', display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <NavLink 
-                to={page === "search" ? "/": "/" + page.replace(/\s+/g,"-")}
+                to={"/" + page.replace(/\s+/g,"-")}
                 className={({isActive}) => 
                   isActive ? activeClassName : inactiveClassName
                 }

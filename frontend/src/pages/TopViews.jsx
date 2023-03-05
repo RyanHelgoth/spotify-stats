@@ -10,7 +10,9 @@ import CircularProgress from '@mui/material/CircularProgress';
 import {Box} from "@mui/material";
 
 
+
 function TopViews() {
+
   const [songs, setSongs] = React.useState([]);
   const [displayIndices, setDisplayIndices] = React.useState([0, 5]);
   const [loading, setLoading] = React.useState(false);
@@ -47,7 +49,7 @@ function TopViews() {
       return (
         <Fade in unmountOnExit timeout={350}>
           <Pagination 
-            count={10} 
+            count={Math.ceil(songs.length/5)} 
             variant="text"
             shape="rounded"
             size="large"
@@ -89,7 +91,7 @@ function TopViews() {
       >
       
       <Typography variant="h5" color="white">
-        Top Viewed Songs This Month
+        Top Viewed Songs Stats This Month
       </Typography>
       <SearchResults songs={songs.slice(displayIndices[0], displayIndices[1])}/>
       {displayPagination()}
