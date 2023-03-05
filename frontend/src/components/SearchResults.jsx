@@ -11,6 +11,7 @@ function SearchResults(props) {
 
   function displaySongs() {
     const lastSongIndex = props.songs.length - 1;
+    console.log(props.songs);
     return props.songs.map((song, index) => {
         return (
             <Box>

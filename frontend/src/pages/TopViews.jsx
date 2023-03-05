@@ -91,7 +91,7 @@ function TopViews() {
       >
       
       <Typography variant="h5" color="white">
-        Top Viewed Songs Stats This Month
+        Top Viewed Song Stats This Month
       </Typography>
       <SearchResults songs={songs.slice(displayIndices[0], displayIndices[1])}/>
       {displayPagination()}

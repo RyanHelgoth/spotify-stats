@@ -11,9 +11,20 @@ mongoose.connect(process.env.DB_URL + process.env.DB_NAME);
 const songSchema = new mongoose.Schema ({
     id: String,
     songName: String,
-    artists: [String],
+    explicit: Boolean,
+    popularity: Number,
+    link: String,
+    playLink: String,
     albumName: String,
+    albumType: String,
     coverArt: String,
+    releaseDate: String,
+    releasePrecision: String,
+    artists: [String],
+    songNumber: Number,
+    albumSongAmount: Number,
+    discNumber: Number,
+    duration: Number,
     searches: Number
 });
 const Song = mongoose.model("Song", songSchema);
@@ -33,14 +44,8 @@ async function upsertSong(song) {
         }
         else {
             // If song has never been searched before create new db entry
-            const newSong = new Song ({
-                id: song.id,
-                songName: song.songName,
-                artists: song.artists,
-                albumName: song.albumName,
-                coverArt: song.coverArt,
-                searches: 1
-            });
+            song.searches = 1;
+            const newSong = new Song (song);
             await Song.create(newSong);
             status = 201
         }
