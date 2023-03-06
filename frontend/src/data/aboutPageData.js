@@ -27,7 +27,7 @@ const data = {
             name: "Liveness"
         },
         {
-            desc: `Note: Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks.`,
+            desc: `The overall loudness of a track in decibels (dB). Loudness values are averaged across the entire track and are useful for comparing relative loudness of tracks.`,
             name: "Loudness"
         },
         {
@@ -47,7 +47,7 @@ const data = {
             name: "Speechiness"
         },
         {
-            desc: `Note: Estimated time signature that can only range between 3/4 and 7/4 time.`,
+            desc: `Estimated time signature that can only range between 3/4 and 7/4 time.`,
             name: "Time Signature"
         },
         {
