@@ -11,6 +11,7 @@ function getKeyString(keyNum, modeNum) {
   // Using pitch class notation
   // https://en.wikipedia.org/wiki/Pitch_class
   const pitchTable = {
+    "-1": "(Unknown Key)",
     "0": "C",
     "1": "C#",
     "2": "D",

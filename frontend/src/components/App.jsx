@@ -4,6 +4,7 @@ import Search from "../pages/Search";
 import About from "../pages/About";
 import Stats from "../pages/Stats";
 import TopViews from "../pages/TopViews";
+import NotFound from "../pages/NotFound";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path="/about" element={<About />} />
       <Route path="/stats/:songID" element={<Stats />} />
       <Route path="/top-songs" element={<TopViews />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

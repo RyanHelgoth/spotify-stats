@@ -45,7 +45,7 @@ function SearchBar(props) {
     return (
         <TextField
             id="filled-search"
-            label="Search Song"
+            label="Search Songs"
             type="text"
             variant="outlined"
             value={query}
