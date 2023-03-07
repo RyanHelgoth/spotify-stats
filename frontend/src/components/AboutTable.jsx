@@ -22,7 +22,7 @@ function AboutTable(props) {
     <TableContainer sx={{maxWidth: 1000}}>
       <Table 
         sx={{ 
-          bgcolor: "#b3b3b3",
+          bgcolor: "#212121",
           borderRadius: 1
         }} 
       >
@@ -32,7 +32,7 @@ function AboutTable(props) {
               key={row.name}
               sx={{ '&:last-child td, &:last-child th': { border: 0 }}}
             >
-              <TableCell component="th" scope="row" sx={{color: "white"}}>
+              <TableCell align="left" component="th" scope="row" sx={{color: "white"}}>
                 {row.name}
               </TableCell>
               <TableCell align="left" sx={{color: "white"}}>{row.value}</TableCell>

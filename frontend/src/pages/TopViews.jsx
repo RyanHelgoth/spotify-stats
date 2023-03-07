@@ -93,10 +93,11 @@ function TopViews() {
       width="100%" 
       spacing={loading ? 25 : 4} 
       alignItems="center"
+      textAlign="center"
       mb="7%"
       >
       
-      <Typography variant="h5" color="white">
+      <Typography variant="h5" color="white" ml={2} mr={2}>
         {
           dbIsEmpty ? 
           "No Song Stats Have Been Viewed Yet This Month" : 

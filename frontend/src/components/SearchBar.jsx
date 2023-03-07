@@ -56,8 +56,15 @@ function SearchBar(props) {
                     <IconButton
                         // https://stackoverflow.com/a/65197663
                         onClick={handleSearch}
+                        color="inherit"    
                     >    
-                        <SearchIcon sx={{color: "white"}}/>
+                        <SearchIcon 
+                            sx={{
+                                color: "white",
+                            }}
+                            
+
+                        />
                     </IconButton>
                 )
             }}
@@ -65,7 +72,7 @@ function SearchBar(props) {
             sx={{
                 width: {xs: "80%", sm: "60%", md: "50%", lg: "40%", xl: "40%"},
                 "& .MuiInputBase-root": {  
-                    backgroundColor: "#b3b3b3",
+                    backgroundColor: "#212121",
                     color: "white"
                 },
                 "& .MuiInputLabel-root": {

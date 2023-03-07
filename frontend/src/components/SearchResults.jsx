@@ -16,7 +16,7 @@ function SearchResults(props) {
         return (
             <Box>
               <Song key={song.id} song={song}></Song>
-              {index !== lastSongIndex && <Divider sx={{bgcolor: "#535353"}}></Divider>}
+              {index !== lastSongIndex && <Divider sx={{bgcolor: "white"}}></Divider>}
             </Box>
         );
     });
@@ -29,7 +29,7 @@ function SearchResults(props) {
       <List sx={{ 
         borderRadius: "4px",
         width: {xs: "80%", sm: "60%", md: "50%", lg: "40%", xl: "40%"}, 
-        bgcolor: "#b3b3b3"
+        bgcolor: "#212121"
         }}
       > 
         {displaySongs()}

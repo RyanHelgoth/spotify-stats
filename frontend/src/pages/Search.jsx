@@ -71,7 +71,7 @@ function Search() {
             sx={{
               "& .MuiPaginationItem-root": {
                 color: "white",
-                borderColor: "white"
+                borderColor: "white",
               }
             }}
           />
