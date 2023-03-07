@@ -8,7 +8,14 @@ function PopularityMeter(props) {
   //TODO animate bar
 
   return (
-    <Box sx={{ position: 'relative', display: "inline-flex"}}>
+    <Box 
+      sx={{ 
+        position: 'relative', 
+        display: "inline-flex", 
+        //mt: {xs: 5, sm: 5, md: 15}
+        mt: 5
+      }}
+    >
       <CircularProgress
         variant="determinate"
         sx={{
@@ -28,7 +35,7 @@ function PopularityMeter(props) {
           left: 0,
           "& 	.MuiCircularProgress-root": {
             animationDuration: "8s"
-          }
+          },
         }}
         size={300}
         thickness={4}
@@ -44,7 +51,7 @@ function PopularityMeter(props) {
           position: 'absolute',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'center'
         }}
         >
         <Typography 

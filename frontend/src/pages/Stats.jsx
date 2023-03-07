@@ -7,7 +7,8 @@ import SongInfo from "../components/SongInfo";
 import SongStats from "../components/SongStats";
 import Box from '@mui/material/Box';
 import PopularityMeter from "../components/PopularityMeter";
-import { Stack } from "@mui/material";
+import { Stack, Card, Divider} from "@mui/material";
+import StatsCard from "../components/StatsCard";
 
 
 function Stats() {
@@ -103,11 +104,10 @@ function Stats() {
         justifyContent: "center", 
         maxWidth: true, 
         flexWrap: "wrap",
-        mb: 7
       }}
       >
-          <SongInfo song={song} stats={songStats}/>
-          
+          <SongInfo song={song} stats={songStats} />
+          <StatsCard song={song} stats={songStats} />
           
       </Box>
     </Box>
@@ -116,19 +116,20 @@ function Stats() {
   );
 };
 
+
 /*
 <Stack 
-            spacing={2}
+            spacing={25}
             justifyContent="center"
             alignItems="center"
             direction="column"
-            mt={5}
+           
             bgcolor="#212121"
             borderRadius={1}
           >
             <SongStats stats={songStats}/>
             <PopularityMeter value={song ? song.popularity : 0}/>
-          </Stack>
+          </Stack>   
 */
 
 //{songStats ? <SongStats stats={songStats}/> : null}

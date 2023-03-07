@@ -20,12 +20,12 @@ function InfoTable(props) {
   
   const rows = [
     createData('Album Type', props.song.albumType),
-    createData('Tempo', `${props.stats.bpm} BPM`),
     createData('Duration', formatDuration(props.song.duration)),
     createData('Key', getKeyString(props.stats.musicalKey, props.stats.mode)),
     createData('Loudness', `${props.stats.loudness} dB`),
     createData(getDateFormat(props.song.releasePrecision), props.song.releaseDate), 
     createData('Song Number', `${props.song.songNumber} on disc ${props.song.discNumber}`),
+    createData('Tempo', `${props.stats.bpm} BPM`),
     createData('Time Signature', getTimeSigString(props.stats.timeSignature))
   ];   
 

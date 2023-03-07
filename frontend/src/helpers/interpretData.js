@@ -35,8 +35,8 @@ function getKeyString(keyNum, modeNum) {
 function getDateFormat(precision) {
   const dateTable = {
     "year": "Release Year",
-    "month": "Release Date (YYYY-MM)",
-    "day": "Release Date (YYYY-MM-DD)"
+    "month": "Release Date (Y-M)",
+    "day": "Release Date (Y-M-D)"
   }
 
   return dateTable[precision];

@@ -64,7 +64,11 @@ function SongStats(props) {
     chartArea: {
       backgroundColor: {
         fill: 'transparent',
-      }
+      },
+      height: "86%",
+      width: "86%",
+      left: "12%",
+      top: "2%"
     },
     hAxis: {
       gridlines: {
@@ -90,12 +94,12 @@ function SongStats(props) {
       },
       alignment: "end"
     },
-    title: "Song Stats",
+    title: "",
     titleTextStyle: {
       color: "white"
     },
     height: "500px",
-    width: "600px"
+    width: "max-content"
   }
 
   
