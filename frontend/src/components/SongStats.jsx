@@ -59,11 +59,11 @@ function SongStats(props) {
       easing: "out"
     },
     backgroundColor: {
-      fill: '#535353',
+      fill: 'transparent',
     },
     chartArea: {
       backgroundColor: {
-        fill: '#535353',
+        fill: 'transparent',
       }
     },
     hAxis: {
@@ -105,7 +105,6 @@ function SongStats(props) {
       chartType="ColumnChart" 
       data={chartData} 
       options={options}
-
     />
   );
 };

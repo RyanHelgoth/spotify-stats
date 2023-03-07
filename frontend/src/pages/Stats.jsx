@@ -107,15 +107,7 @@ function Stats() {
       }}
       >
           <SongInfo song={song} stats={songStats}/>
-          <Stack 
-            spacing={2}
-            justifyContent="center"
-            alignItems="center"
-            mt={5}
-          >
-            <PopularityMeter value={song ? song.popularity : 0}/>
-            <SongStats stats={songStats}/>
-          </Stack>
+          
           
       </Box>
     </Box>
@@ -123,6 +115,21 @@ function Stats() {
   
   );
 };
+
+/*
+<Stack 
+            spacing={2}
+            justifyContent="center"
+            alignItems="center"
+            direction="column"
+            mt={5}
+            bgcolor="#212121"
+            borderRadius={1}
+          >
+            <SongStats stats={songStats}/>
+            <PopularityMeter value={song ? song.popularity : 0}/>
+          </Stack>
+*/
 
 //{songStats ? <SongStats stats={songStats}/> : null}
 export default Stats;

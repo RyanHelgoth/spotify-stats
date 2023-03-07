@@ -25,19 +25,28 @@ function SongInfo(props) {
     (props.song !== null && props.stats !== null) ?
     <Card 
       sx={{ 
-        minWidth: 275, 
-        bgcolor: "#b3b3b3"
+        minWidth: 200, 
+        maxWidth: 700,
+        bgcolor: "#212121",
+        mr: 2,
+        ml: 2,
+        textAlign:"center"
       }}
     >
       <CardContent>
-      <Link href={props.song.playLink}>
+      <Link 
+        href={props.song.playLink}
+        display="inline-block"
+      >
           <Box 
             id="album-box"
             sx={{ 
-            position: 'relative', 
-            display: "flex", 
-            alignItems: "center", 
-            justifyContent: "center",
+              position: 'relative', 
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center",
+              width: {xs: "300px", md: "400px", lg: "500px", xl: "600px"},
+              height: {xs: "300px", md: "400px", lg: "500px", xl: "600px"}
             }}
           >
             <Avatar
@@ -46,8 +55,8 @@ function SongInfo(props) {
               variant="rounded"
               src={props.song.coverArt}
               sx={{ 
-                width: 300, 
-                height: 300
+                width: {xs: "300px", md: "400px", lg: "500px", xl: "600px"},
+                height: {xs: "300px", md: "400px", lg: "500px", xl: "600px"}
               }}
             />
             <PlayCircleIcon 
@@ -63,23 +72,61 @@ function SongInfo(props) {
         <Box 
           sx={{ 
             position: 'relative', 
-            display: "flex", 
-            alignItems: "center", 
+            display: "flex",
             justifyContent: "center",
-            mt: 2
+            alignIems: "center",
+            mt: 2,
+            mb: 1, 
           }}
         >
-          {props.song.explicit && <ExplicitIcon fontSize="large" sx={{color: "white", pr: 0.5}}></ExplicitIcon>}
-          <Typography variant="h4" color="white" sx={{textAlign: "center", display: "inline"}}>
+          
+          <Typography variant="h4" color="white" 
+            sx={{display: "inline", maxWidth: {xs: "250px", md: "350px", lg: "450px", xl: "550px"}}}
+          >
+            {props.song.explicit && <ExplicitIcon fontSize="large" sx={{color: "white", pr: 0.5, top: 4, position: "relative"}}></ExplicitIcon>}
             {props.song.songName}
           </Typography>
         </Box>
-        <Typography variant="h5" color="white" sx={{textAlign: "center"}}>
-          {props.song.artists.join(" & ")}
-        </Typography>
-        <Typography variant="h6" color="white" sx={{textAlign: "center", mb: 2}}>
-          {props.song.albumName}
-        </Typography>
+        <Box 
+          sx={{ 
+            position: 'relative', 
+            display: "flex",
+            justifyContent: "center",
+            alignIems: "center",
+            mb: 1, 
+          }}
+        >
+          <Typography 
+            variant="h5" 
+            color="white" 
+            sx={{
+              textAlign: "center", 
+              maxWidth: {xs: "250px", md: "350px", lg: "450px", xl: "550px"}
+              }}
+            >
+            {props.song.artists.join(" & ")}
+          </Typography>
+        </Box>
+        <Box 
+          sx={{ 
+            position: 'relative', 
+            display: "flex",
+            justifyContent: "center",
+            alignIems: "center",
+            mb: 2, 
+          }}
+        >
+          <Typography 
+            variant="h6" 
+            color="white" 
+            sx={{
+              textAlign: "center", 
+              maxWidth: {xs: "250px", md: "350px", lg: "450px", xl: "550px"}
+            }}
+          >
+            {props.song.albumName}
+          </Typography>
+        </Box>
         <InfoTable song={props.song} stats={props.stats}/>
       </CardContent>
     </Card>

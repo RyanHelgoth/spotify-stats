@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import { NavLink } from 'react-router-dom';
-import "./NavBar.css"
+
 
 const pages = ['search', 'top songs', 'about'];
 
@@ -25,9 +25,6 @@ function ResponsiveAppBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const activeClassName = "activeNavButton";
-  const inactiveClassName = "inactiveNavButton";
 
   // https://www.color-hex.com/color-palette/53188
   // TODO add key for nav links
@@ -89,10 +86,8 @@ function ResponsiveAppBar() {
                   <NavLink 
                       // regex to remove spaces
                       // https://stackoverflow.com/a/48678145
-                      to={"/" + page.replace(/\s+/g,"-")}
-                      className={({isActive}) => 
-                        isActive ? activeClassName : inactiveClassName
-                      }
+                      to={"/" + page.replace(/\s+/g,"-")} 
+                      style={{textDecoration: "none"}} 
                   >
                     <MenuItem 
                       key={page} 
@@ -132,9 +127,7 @@ function ResponsiveAppBar() {
             {pages.map((page) => (
               <NavLink 
                 to={"/" + page.replace(/\s+/g,"-")}
-                className={({isActive}) => 
-                  isActive ? activeClassName : inactiveClassName
-                }
+                style={{textDecoration: "none"}} 
               >
                 <Button
                   key={page}

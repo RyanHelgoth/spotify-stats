@@ -20,7 +20,7 @@ function InfoTable(props) {
   
   const rows = [
     createData('Album Type', props.song.albumType),
-    createData('BPM', props.stats.bpm),
+    createData('Tempo', `${props.stats.bpm} BPM`),
     createData('Duration', formatDuration(props.song.duration)),
     createData('Key', getKeyString(props.stats.musicalKey, props.stats.mode)),
     createData('Loudness', `${props.stats.loudness} dB`),
@@ -36,7 +36,7 @@ function InfoTable(props) {
       <Table 
         sx={{ 
           minWidth: 300,
-          bgcolor: "#b3b3b3"
+          bgcolor: "#212121"
         }} 
       >
         <TableBody>
