@@ -11,6 +11,7 @@ import { Stack, Card, Divider} from "@mui/material";
 import StatsCard from "../components/StatsCard";
 
 
+
 function Stats() {
   const location = useLocation();
   const [song, setSong] = useState(null);
@@ -96,41 +97,29 @@ function Stats() {
 
 
   //TODO set breakpoints
+  
   return (
     <Box >
       <NavBar />
       <Box sx={{
-        display: "flex", 
+        display: "flex",
         justifyContent: "center", 
         maxWidth: true, 
         flexWrap: "wrap",
+        textAlign: "center"
       }}
       >
           <SongInfo song={song} stats={songStats} />
           <StatsCard song={song} stats={songStats} />
-          
       </Box>
     </Box>
       
   
   );
+
+
+
 };
 
-
-/*
-<Stack 
-            spacing={25}
-            justifyContent="center"
-            alignItems="center"
-            direction="column"
-           
-            bgcolor="#212121"
-            borderRadius={1}
-          >
-            <SongStats stats={songStats}/>
-            <PopularityMeter value={song ? song.popularity : 0}/>
-          </Stack>   
-*/
-
-//{songStats ? <SongStats stats={songStats}/> : null}
+//<StatsCard song={song} stats={songStats} />
 export default Stats;

@@ -1,4 +1,4 @@
-import { letterSpacing } from '@mui/system';
+import { letterSpacing, Box } from '@mui/system';
 import * as React from 'react';
 import { Chart } from "react-google-charts";
 
@@ -65,9 +65,9 @@ function SongStats(props) {
       backgroundColor: {
         fill: 'transparent',
       },
-      height: "86%",
-      width: "86%",
-      left: "12%",
+      height: "82%",
+      width: "75%",
+      left: "19%",
       top: "2%"
     },
     hAxis: {
@@ -77,7 +77,8 @@ function SongStats(props) {
       textStyle: {
         color: "white"
       },
-      slantedText: true
+      slantedText: true,
+      slantedTextAngle: 35
     },
     vAxis: {
       minValue: 0, 
@@ -98,8 +99,8 @@ function SongStats(props) {
     titleTextStyle: {
       color: "white"
     },
-    height: "500px",
-    width: "max-content"
+    height: "400px",
+    width: "100%"
   }
 
   

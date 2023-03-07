@@ -58,7 +58,7 @@ function TopViews() {
             count={Math.ceil(songs.length/5)} 
             variant="text"
             shape="rounded"
-            size="large"
+            size="medium"
             onChange={handlePageChange}
             sx={{
               "& .MuiPaginationItem-root": {

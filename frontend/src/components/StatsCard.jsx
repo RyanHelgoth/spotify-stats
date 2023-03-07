@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Avatar, Fade} from '@mui/material';
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Divider } from '@mui/material';
 import ExplicitIcon from '@mui/icons-material/Explicit';
 import InfoTable from './InfoTable';
 import Link from '@mui/material/Link';
@@ -14,6 +14,8 @@ import PopularityMeter from './PopularityMeter';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import "./SongInfo.css" 
 import SongStats from './SongStats';
+import { NavLink } from 'react-router-dom';
+
 
 
 
@@ -27,8 +29,7 @@ function StatsCard(props) {
     <Fade in unmountOnExit timeout={350}>
       <Card 
         sx={{ 
-          minWidth: 200, 
-          maxWidth: 700,
+          width: "340px",
           bgcolor: "#212121",
           mr: 2,
           ml: 2,
@@ -36,13 +37,26 @@ function StatsCard(props) {
           textAlign:"center",
           display: "flex",
           direction: "column",
-          justifyContent: "flex-start",
-          alignItems: "center"
+          justifyContent: "center",
+          alignItems: "center",
+          overflowX: "auto" 
         }}
       >
         <CardContent >
-            <SongStats stats={props.stats}/>
-            <PopularityMeter value={props.song ? props.song.popularity : 0}/>
+          <SongStats stats={props.stats} />
+          <PopularityMeter value={props.song ? props.song.popularity : 0}/>
+          <Typography 
+              variant="h5" 
+              color="white" 
+              sx={{
+                textAlign: "center", 
+                ml: 2,
+                mr: 2
+              }}
+          >
+            {/*Visit the <Link href="/about" color="#1DB954" >about</Link> page for more information on these stats*/}
+            Visit the <NavLink to={"/about"} style={{color: "#1DB954"}}>about</NavLink> page for more information on these stats
+          </Typography>
         </CardContent>
       </Card>
     </Fade>
@@ -55,3 +69,4 @@ function StatsCard(props) {
 };
 
 export default StatsCard;
+//<SongStats stats={props.stats} />

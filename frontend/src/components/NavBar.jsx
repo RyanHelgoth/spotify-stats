@@ -108,7 +108,7 @@ function ResponsiveAppBar() {
           </Box>
           <EqualizerIcon sx={{color: "#1ed760", display: { xs: 'flex', md: 'none' }, mr: 1 }} />
           <Typography
-            variant="h5"
+            variant="h6"
             noWrap
             component="a"
             sx={{
@@ -119,6 +119,7 @@ function ResponsiveAppBar() {
               fontWeight: 700,
               color: 'inherit',
               textDecoration: 'none',
+              fontSize: "1.4em"
             }}
           >
             Spotify Song Stats

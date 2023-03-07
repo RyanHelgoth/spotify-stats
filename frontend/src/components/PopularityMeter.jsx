@@ -13,7 +13,8 @@ function PopularityMeter(props) {
         position: 'relative', 
         display: "inline-flex", 
         //mt: {xs: 5, sm: 5, md: 15}
-        mt: 5
+        mt: 5,
+        mb: 10
       }}
     >
       <CircularProgress
@@ -21,7 +22,7 @@ function PopularityMeter(props) {
         sx={{
           color: "white",
         }}
-        size={300}
+        size={250}
         thickness={4}
         {...props}
         value={100}
@@ -37,7 +38,7 @@ function PopularityMeter(props) {
             animationDuration: "8s"
           },
         }}
-        size={300}
+        size={250}
         thickness={4}
         value={props.value}
         {...props}

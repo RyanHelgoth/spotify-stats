@@ -66,8 +66,8 @@ function Search() {
             count={Math.ceil(songs.length/5)} 
             variant="text"
             shape="rounded"
-            size="large"
             onChange={handlePageChange}
+            size="medium"
             sx={{
               "& .MuiPaginationItem-root": {
                 color: "white",

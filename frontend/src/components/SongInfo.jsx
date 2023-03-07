@@ -32,7 +32,7 @@ function SongInfo(props) {
           mr: 2,
           ml: 2,
           mb: 7,
-          textAlign:"center"
+          textAlign:"center",
         }}
       >
         <CardContent>
@@ -57,8 +57,8 @@ function SongInfo(props) {
                 variant="rounded"
                 src={props.song.coverArt}
                 sx={{ 
-                  width: "400px",//{xs: "400px", sm: "400px", md: "400px", lg: "550px", xl: "600px"},
-                  height: "400px"//{xs: "400px", sm: "400px",md: "400px", lg: "550px", xl: "600px"}
+                  width: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"},
+                  height: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"},
                 }}
               />
               <PlayCircleIcon 
@@ -83,7 +83,7 @@ function SongInfo(props) {
           >
             
             <Typography variant="h4" color="white" 
-              sx={{display: "inline", maxWidth: "400px"}}//{xs: "350px", sm: "350px", md: "350px", lg: "500px", xl: "550px"}}}
+              sx={{display: "inline", maxWidth: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"}}}//{xs: "350px", sm: "350px", md: "350px", lg: "500px", xl: "550px"}}}
             >
               {props.song.explicit && <ExplicitIcon fontSize="large" sx={{color: "white", pr: 1, top: 4, position: "relative"}}></ExplicitIcon>}
               {props.song.songName}
@@ -103,7 +103,7 @@ function SongInfo(props) {
               color="white" 
               sx={{
                 textAlign: "center", 
-                maxWidth: "400px"//</Box>{xs: "350px", sm: "350px", md: "350px", lg: "500px", xl: "550px"}
+                maxWidth: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"}
                 }}
               >
               {props.song.artists.join(" & ")}
@@ -123,7 +123,7 @@ function SongInfo(props) {
               color="white" 
               sx={{
                 textAlign: "center", 
-                maxWidth: "400px"//</Box>{xs: "350px", sm: "350px", md: "350px", lg: "500px", xl: "550px"}
+                maxWidth: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"}
               }}
             >
               {props.song.albumName}
