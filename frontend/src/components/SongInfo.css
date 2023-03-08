@@ -1,4 +1,9 @@
-#play-icon {
+#play-icon-mobile {
+  opacity: 1;
+  transition: 0.25s ease-in-out;
+}
+
+#play-icon-desktop {
   opacity: 0;
   transition: 0.25s ease-in-out;
 }
@@ -7,14 +12,28 @@
   opacity: 1;
   transition: 0.25s ease-in-out;
 }
-    
-#album-box:hover > #play-icon {
+
+
+#album-box:hover > #play-icon-desktop {
   opacity: 1;
   transition: 0.25s ease-in-out;
 }
 
-#album-box:hover > #album-cover {
-  opacity: 0.5;
-  transition: 0.25s ease-in-out;
+
+@media (hover: hover) {
+  #album-box:hover > #album-cover {
+    opacity: 0.5;
+    transition: 0.25s ease-in-out;
+  }
 }
+
+#play-button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+#play-button:focus {
+  opacity: 0.35;
+  transition: 0.15s ease-out;
+}
+
 

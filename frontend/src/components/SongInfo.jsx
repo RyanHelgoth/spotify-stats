@@ -21,8 +21,47 @@ import SongStats from './SongStats';
   //TODO click animation to album cover
 
 function SongInfo(props) {
+  const [iconID, setIconID] = React.useState(null);
+  React.useEffect(() => {
+    /* 
+      Set visibility of play button based on if user is
+      using a touch screen or not
+    */
+
+    // https://stackoverflow.com/a/57995447
+    console.log(window.matchMedia("(hover: none)").matches)
+    if (window.matchMedia("(hover: none)").matches) {
+      // hover unavailable
+      setIconID("play-icon-mobile");
+    }
+    else {
+      // Hover available
+      setIconID("play-icon-desktop");
+    }
+  }, []);
+
+  // Removes styles applied after clicking button
+  function unFocusButton(event) {
+    const button = event.currentTarget;
+
+    if (iconID === "play-icon-desktop") {
+      // Delay fade out of play icon after click
+      setIconID("play-icon-mobile");
+      setTimeout(() => {
+        button.blur();
+        setIconID("play-icon-desktop");
+      }, 200)
+    }
+    else { 
+      // Icon does not fade out on mobile
+      setTimeout(() => {
+        button.blur();
+      }, 200)
+    }
+  };
+
   return (
-    (props.song !== null && props.stats !== null) ?
+    (props.song !== null && props.stats !== null && iconID !== null) ?
     <Fade in unmountOnExit timeout={350}>
       <Card 
         sx={{ 
@@ -39,6 +78,8 @@ function SongInfo(props) {
         <Link 
           href={props.song.playLink}
           display="inline-block"
+          id="play-button"
+          onClick={unFocusButton}
         >
             <Box 
               id="album-box"
@@ -57,12 +98,12 @@ function SongInfo(props) {
                 variant="rounded"
                 src={props.song.coverArt}
                 sx={{ 
-                  width: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"},
-                  height: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"},
+                  width: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"},
+                  height: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"},
                 }}
               />
               <PlayCircleIcon 
-                id="play-icon"
+                id={iconID}
                 fontSize="large" 
                 sx={{
                   color: "white", 
@@ -83,7 +124,7 @@ function SongInfo(props) {
           >
             
             <Typography variant="h4" color="white" 
-              sx={{display: "inline", maxWidth: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"}}}//{xs: "350px", sm: "350px", md: "350px", lg: "500px", xl: "550px"}}}
+              sx={{display: "inline", maxWidth: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"}}}//{xs: "350px", sm: "350px", md: "350px", lg: "500px", xl: "550px"}}}
             >
               {props.song.explicit && <ExplicitIcon fontSize="large" sx={{color: "white", pr: 1, top: 4, position: "relative"}}></ExplicitIcon>}
               {props.song.songName}
@@ -103,7 +144,7 @@ function SongInfo(props) {
               color="white" 
               sx={{
                 textAlign: "center", 
-                maxWidth: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"}
+                maxWidth: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"}
                 }}
               >
               {props.song.artists.join(" & ")}
@@ -123,7 +164,7 @@ function SongInfo(props) {
               color="white" 
               sx={{
                 textAlign: "center", 
-                maxWidth: {xs: "260px", sm: "400px", md: "450px", lg: "450px", xl: "450px"}
+                maxWidth: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"}
               }}
             >
               {props.song.albumName}
