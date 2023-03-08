@@ -88,8 +88,6 @@ function SongInfo(props) {
                 display: "flex", 
                 alignItems: "center", 
                 justifyContent: "center",
-                //width: {xs: "300px", md: "400px", lg: "500px", xl: "600px"},
-                //height: {xs: "300px", md: "400px", lg: "500px", xl: "600px"}
               }}
             >
               <Avatar
@@ -98,8 +96,10 @@ function SongInfo(props) {
                 variant="rounded"
                 src={props.song.coverArt}
                 sx={{ 
-                  width: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"},
-                  height: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"},
+                  width: "100%",
+                  height: "100%",
+                  maxWidth: {xs: "308px", sm: "308px", md: "400px", lg: "450px", xl: "450px"},
+                  maxHeight: {xs: "308px", sm: "308px", md: "400px", lg: "450px", xl: "450px"},
                 }}
               />
               <PlayCircleIcon 
@@ -124,7 +124,7 @@ function SongInfo(props) {
           >
             
             <Typography variant="h4" color="white" 
-              sx={{display: "inline", maxWidth: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"}}}//{xs: "350px", sm: "350px", md: "350px", lg: "500px", xl: "550px"}}}
+              sx={{display: "inline", maxWidth: {xs: "300px", sm: "308px", md: "400px", lg: "450px", xl: "450px"}}}//{xs: "350px", sm: "350px", md: "350px", lg: "500px", xl: "550px"}}}
             >
               {props.song.explicit && <ExplicitIcon fontSize="large" sx={{color: "white", pr: 1, top: 4, position: "relative"}}></ExplicitIcon>}
               {props.song.songName}
@@ -144,7 +144,7 @@ function SongInfo(props) {
               color="white" 
               sx={{
                 textAlign: "center", 
-                maxWidth: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"}
+                maxWidth: {xs: "300px", sm: "308px", md: "400px", lg: "450px", xl: "450px"}
                 }}
               >
               {props.song.artists.join(" & ")}
@@ -164,7 +164,7 @@ function SongInfo(props) {
               color="white" 
               sx={{
                 textAlign: "center", 
-                maxWidth: {xs: "260px", sm: "308px", md: "400px", lg: "450px", xl: "450px"}
+                maxWidth: {xs: "300px", sm: "308px", md: "400px", lg: "450px", xl: "450px"}
               }}
             >
               {props.song.albumName}

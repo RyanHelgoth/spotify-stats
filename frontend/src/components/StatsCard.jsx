@@ -39,7 +39,7 @@ function StatsCard(props) {
           direction: "column",
           justifyContent: "center",
           alignItems: "center",
-          overflowX: "auto" 
+          
         }}
       >
         <CardContent >

@@ -35,7 +35,7 @@ function InfoTable(props) {
     <TableContainer >
       <Table 
         sx={{ 
-          minWidth: 300,
+          minWidth: 200,
           bgcolor: "#212121"
         }} 
       >
