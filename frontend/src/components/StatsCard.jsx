@@ -54,8 +54,8 @@ function StatsCard(props) {
                 mr: 2
               }}
           >
-            {/*Visit the <Link href="/about" color="#1DB954" >about</Link> page for more information on these stats*/}
-            Visit the <NavLink to={"/about"} style={{color: "#1DB954"}}>about</NavLink> page for more information on these stats
+            {/*Wrapped MUI Link in NavLink for styling consistancy with about page links*/}
+            Visit the <NavLink to={"/about"} style={{textDecoration: "none"}}><Link color="#1DB954">about</Link></NavLink> page for more information on these stats
           </Typography>
         </CardContent>
       </Card>
