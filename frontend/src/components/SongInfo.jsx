@@ -21,7 +21,7 @@ import SongStats from './SongStats';
   //TODO click animation to album cover
 
 function SongInfo(props) {
-  const [iconID, setIconID] = React.useState(null);
+  const [iconID, setIconID] = React.useState("play-icon-desktop");
   React.useEffect(() => {
     /* 
       Set visibility of play button based on if user is
@@ -61,7 +61,6 @@ function SongInfo(props) {
   };
 
   return (
-    (props.song !== null && props.stats !== null && iconID !== null) ?
     <Fade in unmountOnExit timeout={350}>
       <Card 
         sx={{ 
@@ -174,11 +173,6 @@ function SongInfo(props) {
         </CardContent>
       </Card>
     </Fade>
-    : <CircularProgress 
-      sx={{color: "#1DB954"}}
-      size={60}
-    >
-    </CircularProgress>
   );
 };
 

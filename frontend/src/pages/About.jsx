@@ -18,8 +18,8 @@ function About() {
           alignItems="center"
           direction="column"
           textAlign="center"
-          mt={5}
-          mb={7}
+          mt={"5vh"}
+          mb={"5vh"}
           ml={2}
           mr={2}
         >

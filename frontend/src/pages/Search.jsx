@@ -9,6 +9,7 @@ import { Collapse, Divider, Fade, Grow, Slide, Zoom } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import {Box} from "@mui/material";
 import { useSearchParams } from "react-router-dom";
+import Loading from "../components/Loading";
 
 function Search() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -81,11 +82,7 @@ function Search() {
     else if (songs.length === 0 && loading) {
       // Waiting on search results
       return (
-      <CircularProgress 
-        sx={{color: "#1DB954"}}
-        size={60}
-      >
-      </CircularProgress>
+        <Loading height={"30vh"}/>
       );
     }
     else {
@@ -99,9 +96,9 @@ function Search() {
     <NavBar />
     <Stack 
       width="100%" 
-      spacing={loading ? 25 : 4} 
+      spacing={4} 
       alignItems="center"
-      mb="7%"
+      mb="5vh"
       >
       
       <SearchBar onSearch={setQuery}/>

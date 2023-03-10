@@ -8,6 +8,7 @@ import { Pagination, Typography } from "@mui/material";
 import { Collapse, Divider, Fade, Grow, Slide, Zoom } from "@mui/material";
 import CircularProgress from '@mui/material/CircularProgress';
 import {Box} from "@mui/material";
+import Loading from "../components/Loading";
 
 
 
@@ -73,11 +74,7 @@ function TopViews() {
     else if (songs.length === 0 && loading) {
       // Waiting on search results
       return (
-      <CircularProgress 
-        sx={{color: "#1DB954"}}
-        size={60}
-      >
-      </CircularProgress>
+        <Loading height={"30vh"}/>
       );
     }
     else {
@@ -91,7 +88,7 @@ function TopViews() {
     <NavBar />
     <Stack 
       width="100%" 
-      spacing={loading ? 25 : 4} 
+      spacing={4} 
       alignItems="center"
       textAlign="center"
       mb="7%"

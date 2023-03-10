@@ -24,8 +24,8 @@ import { NavLink } from 'react-router-dom';
   //TODO click animation to album cover
 
 function StatsCard(props) {
+ 
   return (
-    (props.song !== null && props.stats !== null) ?
     <Fade in unmountOnExit timeout={350}>
       <Card 
         sx={{ 
@@ -60,11 +60,6 @@ function StatsCard(props) {
         </CardContent>
       </Card>
     </Fade>
-    : <CircularProgress 
-      sx={{color: "#1DB954"}}
-      size={60}
-    >
-    </CircularProgress>
   );
 };
 

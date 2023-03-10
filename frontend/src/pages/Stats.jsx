@@ -9,6 +9,8 @@ import Box from '@mui/material/Box';
 import PopularityMeter from "../components/PopularityMeter";
 import { Stack, Card, Divider} from "@mui/material";
 import StatsCard from "../components/StatsCard";
+import {CircularProgress} from "@mui/material";
+import Loading from "../components/Loading";
 
 
 
@@ -16,6 +18,7 @@ function Stats() {
   const location = useLocation();
   const [song, setSong] = useState(null);
   const [songStats, setSongStats] = useState(null);
+  const [iconID, setIconID] = React.useState(null);
 
   useEffect(() => {
     // Set songStats on render
@@ -101,17 +104,20 @@ function Stats() {
   return (
     <Box >
       <NavBar />
-      <Box sx={{
-        display: "flex",
-        justifyContent: "center", 
-        maxWidth: true, 
-        flexWrap: "wrap",
-        textAlign: "center"
-      }}
-      >
+      {song !== null && songStats !== null ? 
+        <Box sx={{
+          display: "flex",
+          justifyContent: "center", 
+          maxWidth: true, 
+          flexWrap: "wrap",
+          textAlign: "center"
+        }}
+        >
           <SongInfo song={song} stats={songStats} />
           <StatsCard song={song} stats={songStats} />
-      </Box>
+        </Box>
+        : 
+        <Loading height={"50vh"}/>}
     </Box>
       
   
