@@ -73,6 +73,7 @@ function Search() {
               "& .MuiPaginationItem-root": {
                 color: "white",
                 borderColor: "white",
+                minWidth: {xs: "1px", sm: "32px"},
               }
             }}
           />

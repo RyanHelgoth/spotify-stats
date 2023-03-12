@@ -64,8 +64,9 @@ function TopViews() {
             sx={{
               "& .MuiPaginationItem-root": {
                 color: "white",
-                borderColor: "white"
-              }
+                borderColor: "white",
+                minWidth: {xs: "1px", sm: "32px"},
+              },
             }}
           />
         </Fade>
@@ -91,10 +92,16 @@ function TopViews() {
       spacing={4} 
       alignItems="center"
       textAlign="center"
-      mb="7%"
+      mb="5vh"
       >
       
-      <Typography variant="h5" color="white" ml={2} mr={2}>
+      <Typography 
+        variant="h5" 
+        color="white" 
+        ml={2} 
+        mr={2}
+        sx={{width: {xs: "80%", sm: "60%", md: "50%", lg: "40%", xl: "40%"}}}
+      >
         {
           dbIsEmpty ? 
           "No Song Stats Have Been Viewed Yet This Month" : 

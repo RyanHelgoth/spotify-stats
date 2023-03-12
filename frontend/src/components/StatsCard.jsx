@@ -33,7 +33,7 @@ function StatsCard(props) {
           bgcolor: "#212121",
           mr: 2,
           ml: 2,
-          mb: 7,
+          mb: "5vh",
           textAlign:"center",
           display: "flex",
           direction: "column",

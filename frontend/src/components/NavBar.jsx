@@ -15,7 +15,7 @@ import { NavLink } from 'react-router-dom';
 
 const pages = ['search', 'top songs', 'about'];
 
-function ResponsiveAppBar() {
+function NavBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -154,4 +154,4 @@ function ResponsiveAppBar() {
     </AppBar>
   );
 }
-export default ResponsiveAppBar;
+export default NavBar;

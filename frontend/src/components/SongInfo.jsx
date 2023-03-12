@@ -69,7 +69,7 @@ function SongInfo(props) {
           bgcolor: "#212121",
           mr: 2,
           ml: 2,
-          mb: 7,
+          mb: "5vh",
           textAlign:"center",
         }}
       >
