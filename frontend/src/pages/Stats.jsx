@@ -27,11 +27,16 @@ function Stats() {
     async function getSongStats(ID) {
       const path = `api/track-stats/${ID}`;
       const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
-      const response = await fetch(url);
-      const song = await response.json();
-      // data contains data of one song so it must be put into an array to get song object
-      const stats = extractSongStats(song);
-      setSongStats(stats);
+      try {
+        const response = await fetch(url);
+        const song = await response.json();
+        // data contains data of one song so it must be put into an array to get song object
+        const stats = extractSongStats(song);
+        setSongStats(stats);
+      }
+      catch (error) {
+        alert(`Error: ${error}`);
+      }
     }
 
     
@@ -62,12 +67,17 @@ function Stats() {
       async function getSong(ID) {
         const path = `api/track/${ID}`;
         const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
-        const response = await fetch(url);
-        const song = await response.json();
-        
-        // data contains data of one song so it must be put into an array to get song object
-        const extractedSong = extractSong(song);
-        setSong(extractedSong);     
+        try {
+          const response = await fetch(url);
+          const song = await response.json();
+          
+          // data contains data of one song so it must be put into an array to get song object
+          const extractedSong = extractSong(song);
+          setSong(extractedSong);     
+        }
+        catch (error) {
+          alert(`Error: ${error}`);
+        }
         
       };
       
@@ -80,7 +90,7 @@ function Stats() {
   useEffect(() => {
     if (song) {
       async function addSearch(song) {
-        const path = "api/searched-song"
+        const path = "api/searched-song";
         const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
         const options = {
           method: "POST",
@@ -91,7 +101,13 @@ function Stats() {
           },
           body: JSON.stringify(song)
         };
-        await fetch(url, options);
+
+        try {
+          await fetch(url, options);
+        }
+        catch (error) {
+          alert(`Error: ${error}`);
+        }
       }
 
       addSearch(song);

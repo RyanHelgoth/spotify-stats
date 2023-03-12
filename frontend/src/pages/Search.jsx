@@ -27,11 +27,16 @@ function Search() {
         setLoading(true);
         const PATH = "api/tracks";
         const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH + "?track-name=" + query);
-        const response = await fetch(URL);
-        const data = await response.json();
-        const extractedSongs = extractSongs(data);
-        setSongs(extractedSongs);
-        setLoading(false);
+        try {
+          const response = await fetch(URL);
+          const data = await response.json();
+          const extractedSongs = extractSongs(data);
+          setSongs(extractedSongs);
+          setLoading(false);
+        }
+        catch (error) {
+          alert(`Error: ${error}`);
+        }
       };
       getSongs(query);
     }

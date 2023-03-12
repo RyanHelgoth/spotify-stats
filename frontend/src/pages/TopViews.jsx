@@ -26,16 +26,25 @@ function TopViews() {
       setLoading(true);
       const PATH = "api/top-viewed-songs";
       const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH);
-      const response = await fetch(URL);
-      const songs = await response.json();
-      if (songs.length !== 0) {
-        const rankedSongs = rankTopSongs(songs);
-        setSongs(rankedSongs);
+      try {
+        const response = await fetch(URL);
+        const songs = await response.json();
+        if (songs.length !== 0) {
+          const rankedSongs = rankTopSongs(songs);
+          setSongs(rankedSongs);
+        }
+        else {
+          setDBIsEmpty(true);
+        }
       }
-      else {
-        setDBIsEmpty(true);
+      catch (error) {
+        alert(`Error: ${error}`);
       }
-      setLoading(false);
+      finally {
+        setLoading(false);
+      }
+      
+    
     };
 
     getTopSongs();
