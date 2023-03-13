@@ -79,13 +79,13 @@ function NavBar() {
               >
                 {pages.map((page) => (
                   <NavLink 
+                    key={page}
                     // Regex to remove spaces in links
                     // https://stackoverflow.com/a/48678145
                     to={"/" + page.replace(/\s+/g,"-")} 
                     style={{textDecoration: "none"}} 
                   >
                     <MenuItem 
-                      key={page} 
                       sx={{
                         backgroundColor: "#212121", 
                         color: "white",
@@ -122,11 +122,13 @@ function NavBar() {
           <Box sx={{flexGrow: 1, justifyContent: 'flex-end', display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <NavLink 
+                key={page}
+                // Regex to remove spaces in links
+                // https://stackoverflow.com/a/48678145
                 to={"/" + page.replace(/\s+/g,"-")}
                 style={{textDecoration: "none"}} 
               >
                 <Button
-                  key={page}
                   onClick={handleCloseNavMenu}
                   sx={{
                     my: 2, 

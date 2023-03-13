@@ -26,7 +26,6 @@ function PopularityMeter(props) {
       />
       <CircularProgress
         variant="determinate"
-        disableShrink
         sx={{
           color: "#1DB954",
           position: 'absolute',

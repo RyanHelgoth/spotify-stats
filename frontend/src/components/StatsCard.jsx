@@ -40,8 +40,7 @@ function StatsCard(props) {
                 mr: 2
               }}
           >
-            {/*Wrapped MUI Link in NavLink for styling consistancy with about page links*/}
-            Visit the <NavLink to={"/about"} style={{textDecoration: "none"}}><Link color="#1DB954">about</Link></NavLink> page for more information on these stats
+            Visit the <Link component={NavLink} to="/about" color="#1DB954">about</Link> page for more information on these stats
           </Typography>
         </CardContent>
       </Card>

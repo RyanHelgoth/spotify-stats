@@ -1,7 +1,7 @@
 import React from "react";
 import List from '@mui/material/List';
 import Song from "./Song";
-import { Divider, Fade} from "@mui/material";
+import { Divider, Fade } from "@mui/material";
 import { Box } from "@mui/system";
 
 // List of songs
@@ -12,8 +12,8 @@ function SearchResults(props) {
   
     return props.songs.map((song, index) => {
         return (
-            <Box>
-              <Song key={song.id} song={song}></Song>
+            <Box key={song.id}>
+              <Song song={song}></Song>
               { // Display dividers between songs 
                 index !== lastSongIndex && <Divider sx={{bgcolor: "white"}}></Divider> 
               }
