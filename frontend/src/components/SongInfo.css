@@ -13,12 +13,10 @@
   transition: 0.25s ease-in-out;
 }
 
-
 #album-box:hover > #play-icon-desktop {
   opacity: 1;
   transition: 0.25s ease-in-out;
 }
-
 
 @media (hover: hover) {
   #album-box:hover > #album-cover {

@@ -12,7 +12,6 @@ import MenuItem from '@mui/material/MenuItem';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import { NavLink } from 'react-router-dom';
 
-
 const pages = ['search', 'top songs', 'about'];
 
 function NavBar() {
@@ -25,9 +24,6 @@ function NavBar() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  // https://www.color-hex.com/color-palette/53188
-  // TODO add key for nav links
 
   return (
     <AppBar sx={{backgroundColor: "#121212", mb: "5vh"}} position="sticky">
@@ -49,7 +45,6 @@ function NavBar() {
           >
             Spotify Song Stats
           </Typography>
-
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
@@ -84,10 +79,10 @@ function NavBar() {
               >
                 {pages.map((page) => (
                   <NavLink 
-                      // regex to remove spaces
-                      // https://stackoverflow.com/a/48678145
-                      to={"/" + page.replace(/\s+/g,"-")} 
-                      style={{textDecoration: "none"}} 
+                    // Regex to remove spaces in links
+                    // https://stackoverflow.com/a/48678145
+                    to={"/" + page.replace(/\s+/g,"-")} 
+                    style={{textDecoration: "none"}} 
                   >
                     <MenuItem 
                       key={page} 
@@ -154,4 +149,5 @@ function NavBar() {
     </AppBar>
   );
 }
+
 export default NavBar;

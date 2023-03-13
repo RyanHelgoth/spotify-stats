@@ -1,30 +1,16 @@
 import React from 'react'
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { Avatar, Fade} from '@mui/material';
-import { CircularProgress, Divider } from '@mui/material';
-import ExplicitIcon from '@mui/icons-material/Explicit';
-import InfoTable from './InfoTable';
+import { Fade} from '@mui/material';
 import Link from '@mui/material/Link';
 import PopularityMeter from './PopularityMeter';
-import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import "./SongInfo.css" 
 import SongStats from './SongStats';
 import { NavLink } from 'react-router-dom';
 
-
-
-
-//TODO fade in
-
-  //TODO click animation to album cover
-
 function StatsCard(props) {
- 
+
   return (
     <Fade in unmountOnExit timeout={350}>
       <Card 

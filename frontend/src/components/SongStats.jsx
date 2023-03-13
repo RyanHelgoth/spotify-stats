@@ -1,10 +1,9 @@
-import { letterSpacing, Box } from '@mui/system';
 import * as React from 'react';
 import { Chart } from "react-google-charts";
 
-
-
 function SongStats(props) {
+
+  // Initially set all chart columns to 0%
   const [chartData, setChartData] = React.useState([
     ["Stat", "Percentage", {role: "style"}],
     ["acousticness", 0, "#1db954"],
@@ -16,22 +15,6 @@ function SongStats(props) {
     ["valence", 0, "#1db954"],
   ]);
 
-  React.useEffect(() => {
-    
-      const data = [
-        ["Stat", "Percentage", {role: "style"}],
-        ["acousticness", 0, "#1db954"],
-        ["danceability", 0, "#1db954"],
-        ["energy", 0, "#1db954"],
-        ["instrumentalness", 0, "#1db954"],
-        ["liveness", 0, "#1db954"],
-        ["speechiness", 0, "#1db954"],
-        ["valence", 0, "#1db954"],
-      ];
-      setChartData(data);
-    
-  }, []);
-  
   React.useEffect(() => {
     if (props.stats) {
       const data = [
@@ -48,9 +31,6 @@ function SongStats(props) {
     }
   }, [props.stats]);
 
-
-  
- 
   const options = {
     colors: ["#1db954"], // legend color
     animation: {
@@ -103,8 +83,6 @@ function SongStats(props) {
     width: "100%"
   }
 
-  
-
   return (
     <Chart 
       chartType="ColumnChart" 
@@ -113,6 +91,7 @@ function SongStats(props) {
     />
   );
 };
+
 export default SongStats;
 
 

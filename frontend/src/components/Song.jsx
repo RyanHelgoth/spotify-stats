@@ -5,26 +5,9 @@ import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Typography from "@mui/material/Typography";
 import ListItemButton from '@mui/material/ListItemButton';
 import { NavLink } from "react-router-dom";
-
+import { generateArtistText } from "../helpers/interpretData";
 
 function Song(props) {
-  console.log(props.song);
-
-  function generateArtistText() {
-    let headerText;
-    let artistText;
-
-    if (props.song.artists.length === 1) {
-      headerText = "Artist: ";
-      artistText = props.song.artists[0];
-    }
-    else {
-      headerText = "Artists: ";
-      artistText = props.song.artists.join(" & ");
-    }
-
-    return headerText + artistText;
-  }
 
   return (
     <NavLink 
@@ -48,7 +31,7 @@ function Song(props) {
                 component="span"
                 variant="body2"
               >
-                {generateArtistText()}
+                {generateArtistText(props.song.artists)}
               </Typography>
               <Typography
                 sx={{ display: 'block', color:"white"}}
@@ -64,8 +47,7 @@ function Song(props) {
               >
                 {`\n Ranking: #${props.song.rank}`}
               </Typography>}
-            </React.Fragment>
-            
+            </React.Fragment>  
           }
         />
       </ListItemButton>

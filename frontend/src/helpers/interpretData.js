@@ -1,14 +1,16 @@
-
+// Returns mode of song based on number returned by api.
 function getModeString(modeNum) {
   return modeNum === 1 ? "Major" : "Minor";
 }
   
+// Generates time signature string.
 function getTimeSigString(timeSigNum) {
   return `${timeSigNum}/4`;
 }
 
+// Generates key string based on numbers provided by api.
 function getKeyString(keyNum, modeNum) {
-  // Using pitch class notation
+  // Convert using pitch class notation
   // https://en.wikipedia.org/wiki/Pitch_class
   const pitchTable = {
     "-1": "(Unknown Key)",
@@ -32,6 +34,10 @@ function getKeyString(keyNum, modeNum) {
   return `${key} ${mode}`;
 };
 
+/* 
+  Sets format of date string depending on the song's 
+  release date precision provided by the api.
+*/
 function getDateFormat(precision) {
   const dateTable = {
     "year": "Release Year",
@@ -42,10 +48,13 @@ function getDateFormat(precision) {
   return dateTable[precision];
 }
 
+/* 
+  Generates a song duration string from song duration given in miliseconds.
+  Format is consistent with spotify's duration formating.
+*/
 function formatDuration(duration) {
   // https://stackoverflow.com/a/69590637
-  // Duration is in ms
-
+  
   // 1- Convert to seconds:
   let seconds = duration / 1000;
 
@@ -64,15 +73,13 @@ function formatDuration(duration) {
   let minutesStr = ("00" + minutes).slice(-2);
   let secondsStr = ("00" + seconds).slice(-2);
 
+  // Construct string
   let durationString = "";
-
   if (hours !== 0) {
     durationString += hoursStr + ":" 
   }
-
   if (minutes !== 0) {
     durationString += minutesStr + ":"
-
     // Get rid of leading 0 unless song is under a minute
     if (durationString[0] === "0") {
       durationString = durationString.slice(1);
@@ -80,11 +87,16 @@ function formatDuration(duration) {
   } else {
     durationString += "0:"
   }
-
   durationString += secondsStr;
+
   return durationString;
 }
 
+/*
+  Sorts songs from most searches to least searches 
+  and gives each song a rank based on their position
+  after sorting.
+*/
 function rankTopSongs(songs) {
   // Using spread to return new array
   const sortedSongs = [...songs].sort((lSong, rSong) => {
@@ -98,8 +110,21 @@ function rankTopSongs(songs) {
 
   return rankedSongs;
 }
-  
 
-  
+// Generates string including appropriate header and list of artists.
+function generateArtistText(artists) {
+  let headerText;
+  let artistText;
 
-export { getKeyString, getTimeSigString, getDateFormat, formatDuration, rankTopSongs};
+  if (artists.length === 1) {
+    headerText = "Artist: ";
+  }
+  else {
+    headerText = "Artists: ";
+  }
+
+  artistText = artists.join(" & ");
+  return headerText + artistText;
+}
+  
+export { getKeyString, getTimeSigString, getDateFormat, formatDuration, rankTopSongs, generateArtistText};

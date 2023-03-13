@@ -5,7 +5,6 @@ function Loading(props) {
   return (
     <Box 
       height={props.height}
-      //bgcolor="red"
       sx={{textAlign: "center"}}
     >
       <CircularProgress 

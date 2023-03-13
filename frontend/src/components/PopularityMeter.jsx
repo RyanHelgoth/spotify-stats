@@ -1,18 +1,15 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 function PopularityMeter(props) {
-  //TODO animate bar
-
+  
   return (
     <Box 
       sx={{ 
         position: 'relative', 
         display: "inline-flex", 
-        //mt: {xs: 5, sm: 5, md: 15}
         mt: 5,
         mb: 10
       }}
@@ -54,7 +51,7 @@ function PopularityMeter(props) {
           alignItems: 'center',
           justifyContent: 'center'
         }}
-        >
+      >
         <Typography 
           variant="caption" 
           component="div" 
@@ -68,9 +65,7 @@ function PopularityMeter(props) {
         </Typography>
       </Box>
     </Box>
-
   );
 };
-
 
 export default PopularityMeter;

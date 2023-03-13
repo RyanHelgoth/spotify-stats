@@ -1,3 +1,4 @@
+// Data used on about page
 const data = {
     descriptions: [
         {
