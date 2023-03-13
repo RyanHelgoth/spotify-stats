@@ -1,6 +1,7 @@
 import React from "react";
-import NavBar from "../components/NavBar";
 import { Box, Typography } from "@mui/material";
+import NavBar from "../components/NavBar";
+
 function NotFound() {
   return (
     <Box>

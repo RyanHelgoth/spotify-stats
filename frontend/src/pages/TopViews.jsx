@@ -1,19 +1,12 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import SearchBar from "../components/SearchBar";
-import SearchResults from "../components/SearchResults";
-import { rankTopSongs } from "../helpers/interpretData.js"
 import { Stack } from "@mui/system";
-import { Pagination, Typography } from "@mui/material";
-import { Collapse, Divider, Fade, Grow, Slide, Zoom } from "@mui/material";
-import CircularProgress from '@mui/material/CircularProgress';
-import {Box} from "@mui/material";
+import { Fade, Pagination, Typography, Box} from "@mui/material";
+import NavBar from "../components/NavBar";
+import SearchResults from "../components/SearchResults";
 import Loading from "../components/Loading";
-
-
+import { rankTopSongs } from "../helpers/interpretData.js"
 
 function TopViews() {
-
   const [songs, setSongs] = React.useState([]);
   const [displayIndices, setDisplayIndices] = React.useState([0, 5]);
   const [loading, setLoading] = React.useState(false);
@@ -21,11 +14,11 @@ function TopViews() {
 
   React.useEffect(() => {
     async function getTopSongs() {
-      // Reset songs so loading animation shows after first search
-      setSongs([]); 
+      setSongs([]); // Reset songs so loading animation shows after first search
       setLoading(true);
       const PATH = "api/top-viewed-songs";
       const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH);
+
       try {
         const response = await fetch(URL);
         const songs = await response.json();
@@ -43,16 +36,13 @@ function TopViews() {
       finally {
         setLoading(false);
       }
-      
-    
     };
 
     getTopSongs();
   }, []);
 
-
+  // Sets indicies representing the start and end of sublist of songs to display.
   function handlePageChange(event, page) {
-    console.log(page)
     const start = (page - 1) * 5;
     const end = page * 5;
     const indicies = [start, end];
@@ -102,8 +92,7 @@ function TopViews() {
       alignItems="center"
       textAlign="center"
       mb="5vh"
-      >
-      
+    >
       <Typography 
         variant="h5" 
         color="white" 

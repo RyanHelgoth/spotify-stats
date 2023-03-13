@@ -1,14 +1,10 @@
 import React from "react";
-import NavBar from "../components/NavBar";
 import { Box, Typography, Stack, Link} from "@mui/material";
-import data from "../data/aboutPageData.js"
+import NavBar from "../components/NavBar";
 import AboutTable from "../components/AboutTable";
+import data from "../data/aboutPageData.js"
 
 function About() {
-
- 
-
-
   return (
     <Box >
       <NavBar />
@@ -55,8 +51,6 @@ function About() {
             >here</Link> to see the github repo for this project.
           </Typography>
         </Stack>
-        
-      
     </Box>
   );
 };
