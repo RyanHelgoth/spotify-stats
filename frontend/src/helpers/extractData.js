@@ -66,9 +66,7 @@ function extractSongs(data) {
 };
 
 // Extracts relevant song stats from audio features api response
-function extractSongStats(song) {
-  const stats = song.stats;
-
+function extractSongStats(stats) {
   return {
     acousticness: stats.acousticness,
     danceability: stats.danceability,

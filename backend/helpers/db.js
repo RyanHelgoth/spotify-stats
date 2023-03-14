@@ -5,33 +5,52 @@ import schedule from "node-schedule";
 // mongod --dbpath '/f/git/spotify-stats/backend/data/db'
 
 dotenv.config();
+connect();
+const Song = createModel();
 
-console.log(process.env.DB_URL + process.env.DB_NAME)
-mongoose.connect(process.env.DB_URL + process.env.DB_NAME);
-
-const songSchema = new mongoose.Schema ({
-    id: String,
-    songName: String,
-    explicit: Boolean,
-    popularity: Number,
-    link: String,
-    playLink: String,
-    albumName: String,
-    albumType: String,
-    coverArt: String,
-    releaseDate: String,
-    releasePrecision: String,
-    artists: [String],
-    songNumber: Number,
-    albumSongAmount: Number,
-    discNumber: Number,
-    duration: Number,
-    searches: Number
+// Clear db at the start of each month
+const cronSchedule = "0 0 1 * *";
+const clearSearches = schedule.scheduleJob(cronSchedule, async () => {
+    await clearDB();
 });
-const Song = mongoose.model("Song", songSchema);
+
+async function connect() {
+    try {
+        await mongoose.connect(process.env.DB_URL + process.env.DB_NAME);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+function createModel() {
+    const songSchema = new mongoose.Schema ({
+        id: String,
+        songName: String,
+        explicit: Boolean,
+        popularity: Number,
+        link: String,
+        playLink: String,
+        albumName: String,
+        albumType: String,
+        coverArt: String,
+        releaseDate: String,
+        releasePrecision: String,
+        artists: [String],
+        songNumber: Number,
+        albumSongAmount: Number,
+        discNumber: Number,
+        duration: Number,
+        searches: Number
+    });
+
+    const Song = mongoose.model("Song", songSchema);
+    return Song;
+}
 
 async function upsertSong(song) {
-    let status;
+    let response = {};
+
     try {
         const songSearchedBefore = await Song.exists({id: song.id})
 
@@ -41,33 +60,47 @@ async function upsertSong(song) {
             // https://stackoverflow.com/a/41444359
             const update = {$inc: {searches: 1}};
             await Song.findOneAndUpdate(filter, update);
-            status = 200
+            response.status = 200;
         }
         else {
             // If song has never been searched before create new db entry
             song.searches = 1;
-            const newSong = new Song (song);
+            const newSong = new Song(song);
             await Song.create(newSong);
-            status = 201
+            response.status = 201;
         }
     }
-    catch (err) {
-        console.log(err);
+    catch (error) {
+        console.log(error);
+        response.error = {
+            error: err,
+            error_description: "Server Error"
+        }
+        response.status = 500;
     }   
-
-    return status;
+    finally {
+        return response;
+    }
 };
 
-async function getSongs() {
-    //TODO If amount returned < 45, then adjust amount
-    // of pagination tabs.
+async function getTopSongs() {
+    let response = {};
     try {
         // Get top 50 most searched songs
         const top50 = await Song.find().sort({searches: "ascending"}).limit(50);
-        return top50;
+        response.songs = top50;
+        response.status = 200;
     }
     catch (err) {
         console.log(err);
+        response.error = {
+            error: err,
+            error_description: "Server Error"
+        }
+        response.status = 500;
+    }
+    finally {
+        return response;
     }
 }
 
@@ -75,20 +108,12 @@ async function clearDB() {
     // Used to reset most searched songs list at the start of each month
     try {
         await Song.deleteMany();
+        console.log("Cleared db");
     }
     catch (err) {
         console.log(err);
+        console.log("Unable to clear db");
     }
 };
 
-
-// Clear db at the start of each month
-const cronSchedule = "0 0 1 * *";
-//const cronSchedule = "30 * * * * *"; //TEST
-const clearSearches = schedule.scheduleJob(cronSchedule, async () => {
-    await clearDB();
-    console.log("Cleared db");
-});
-
-
-export { getSongs, upsertSong, clearDB };
+export { getTopSongs, upsertSong, clearDB };

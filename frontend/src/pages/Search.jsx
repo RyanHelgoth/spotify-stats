@@ -27,16 +27,21 @@ function Search() {
         try {
           const response = await fetch(URL);
           const data = await response.json();
-          const extractedSongs = extractSongs(data);
-          setSongs(extractedSongs);
-          setLoading(false);
+          if (response.ok) {
+            const extractedSongs = extractSongs(data);
+            setSongs(extractedSongs);
+          }
+          else {
+            alert(`${data.status} Error: ${data.error.error}\n` +
+              `Error Description: ${data.error.error_description}`);
+          }
         }
         catch (error) {
           alert(`Error: ${error}`);
         }
         finally {
-          // Reset page position on new query
-          handlePageChange(null, 1);
+          setLoading(false);
+          handlePageChange(null, 1); // Reset page position on new query
         }
       };
       

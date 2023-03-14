@@ -23,9 +23,15 @@ function Stats() {
 
       try {
         const response = await fetch(url);
-        const song = await response.json();
-        const stats = extractSongStats(song);
-        setSongStats(stats);
+        const data = await response.json();
+        if (response.ok) {
+          const stats = extractSongStats(data.stats);
+          setSongStats(stats);
+        }
+        else {
+          alert(`${data.status} Error: ${data.error.error}\n` +
+          `Error Description: ${data.error.error_description}`);
+        }
       }
       catch (error) {
         alert(`Error: ${error}`);
@@ -48,9 +54,15 @@ function Stats() {
   
         try {
           const response = await fetch(url);
-          const song = await response.json();
-          const extractedSong = extractSong(song);
-          setSong(extractedSong);     
+          const data = await response.json();
+          if (response.ok) {
+            const extractedSong = extractSong(data.song);
+            setSong(extractedSong);   
+          }
+          else {
+            alert(`${data.status} Error: ${data.error.error}\n` +
+            `Error Description: ${data.error.error_description}`);
+          }  
         }
         catch (error) {
           alert(`Error: ${error}`);
@@ -62,11 +74,11 @@ function Stats() {
   }, [location.pathname, location.state]);
   
 
-  // Increment song's search count in db
+  // Increment song's view count in db
   useEffect(() => {
     if (song) {
       async function addSearch(song) {
-        const path = "api/searched-song";
+        const path = "api/viewed-song";
         const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
         const options = {
           method: "POST",
@@ -79,10 +91,20 @@ function Stats() {
         };
 
         try {
-          await fetch(url, options);
+          /* 
+            Console logging error instead of alerting because there is 
+            no point in bugging the user with an error message when the error
+            doesn't effect their use of the website.
+          */
+          const response = await fetch(url, options);
+          const data = await response.json();
+          if (!response.ok) {
+            console.log(`${data.status} Error (Top Songs Update Error): ${data.error.error}\n` +
+            `Error Description: ${data.error.error_description}`);
+          }
         }
         catch (error) {
-          alert(`Error: ${error}`);
+          console.log(`Top Songs Update Error: ${error}`);
         }
       }
 
