@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 import schedule from "node-schedule";
 
 // mongod --dbpath '/f/git/spotify-stats/backend/data/db'
+//mongodb://127.0.0.1:27017/
 
 dotenv.config();
 connect();
@@ -15,8 +16,10 @@ const clearSearches = schedule.scheduleJob(cronSchedule, async () => {
 });
 
 async function connect() {
+    const options = {keepAlive: true}
     try {
-        await mongoose.connect(process.env.DB_URL + process.env.DB_NAME);
+        await mongoose.connect(process.env.DB_URL + process.env.DB_NAME, options);
+        console.log("Connected to db");
     }
     catch (error) {
         console.log(error);
@@ -73,8 +76,8 @@ async function upsertSong(song) {
     catch (error) {
         console.log(error);
         response.error = {
-            error: err,
-            error_description: "Server Error"
+            error: "Server Error",
+            error_description: error.message
         }
         response.status = 500;
     }   
@@ -94,8 +97,8 @@ async function getTopSongs() {
     catch (err) {
         console.log(err);
         response.error = {
-            error: err,
-            error_description: "Server Error"
+            error: "Server Error",
+            error_description: err.message
         }
         response.status = 500;
     }
