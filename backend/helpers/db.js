@@ -11,7 +11,7 @@ const Song = createModel();
 
 // Clear db at the start of each month
 const cronSchedule = "0 0 1 * *";
-const clearSearches = schedule.scheduleJob(cronSchedule, async () => {
+const clearViews = schedule.scheduleJob(cronSchedule, async () => {
     await clearDB();
 });
 
@@ -44,7 +44,7 @@ function createModel() {
         albumSongAmount: Number,
         discNumber: Number,
         duration: Number,
-        searches: Number
+        views: Number
     });
 
     const Song = mongoose.model("Song", songSchema);
@@ -55,19 +55,19 @@ async function upsertSong(song) {
     let response = {};
 
     try {
-        const songSearchedBefore = await Song.exists({id: song.id})
+        const songViewedBefore = await Song.exists({id: song.id})
 
-        if (songSearchedBefore) {
-            // If song searched before, update search count
+        if (songViewedBefore) {
+            // If song viewed before, update view count
             const filter = {id: song.id};
             // https://stackoverflow.com/a/41444359
-            const update = {$inc: {searches: 1}};
+            const update = {$inc: {views: 1}};
             await Song.findOneAndUpdate(filter, update);
             response.status = 200;
         }
         else {
-            // If song has never been searched before create new db entry
-            song.searches = 1;
+            // If song has never been viewed before create new db entry
+            song.views = 1;
             const newSong = new Song(song);
             await Song.create(newSong);
             response.status = 201;
@@ -89,8 +89,8 @@ async function upsertSong(song) {
 async function getTopSongs() {
     let response = {};
     try {
-        // Get top 50 most searched songs
-        const top50 = await Song.find().sort({searches: "ascending"}).limit(50);
+        // Get top 50 most viewed songs
+        const top50 = await Song.find().sort({views: "ascending"}).limit(50);
         response.songs = top50;
         response.status = 200;
     }
@@ -108,7 +108,7 @@ async function getTopSongs() {
 }
 
 async function clearDB() {
-    // Used to reset most searched songs list at the start of each month
+    // Used to reset most viewed songs list at the start of each month
     try {
         await Song.deleteMany();
         console.log("Cleared db");

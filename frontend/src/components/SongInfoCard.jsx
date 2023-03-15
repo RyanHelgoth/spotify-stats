@@ -5,12 +5,12 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Avatar, Fade} from '@mui/material';
 import ExplicitIcon from '@mui/icons-material/Explicit';
-import InfoTable from './InfoTable';
+import SongInfoTable from './SongInfoTable';
 import Link from '@mui/material/Link';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import "./SongInfo.css" 
+import "./SongInfoCard.css" 
 
-function SongInfo(props) {
+function SongInfoCard(props) {
   const [iconID, setIconID] = React.useState("play-icon-desktop");
 
   React.useEffect(() => {
@@ -158,11 +158,11 @@ function SongInfo(props) {
               {props.song.albumName}
             </Typography>
           </Box>
-          <InfoTable song={props.song} stats={props.stats}/>
+          <SongInfoTable song={props.song} stats={props.stats}/>
         </CardContent>
       </Card>
     </Fade>
   );
 };
 
-export default SongInfo
+export default SongInfoCard

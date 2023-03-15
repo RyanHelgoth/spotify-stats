@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
-import SearchResults from "../components/SearchResults";
+import SongList from "../components/SongList";
 import Loading from "../components/Loading";
 import { Stack } from "@mui/system";
 import { Fade, Pagination, Box } from "@mui/material";
@@ -109,7 +109,7 @@ function Search() {
       mb="5vh"
     >
       <SearchBar onSearch={setQuery}/>
-      <SearchResults songs={songs.slice(displayIndices[0], displayIndices[1])}/>
+      <SongList songs={songs.slice(displayIndices[0], displayIndices[1])}/>
       {displayPagination()}
     </Stack>
     </Box>

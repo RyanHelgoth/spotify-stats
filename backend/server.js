@@ -32,15 +32,15 @@ app.get("/api/track-stats/:trackID", async (req, res) => {
     res.status(data.status).send(data);
 });
 
-// Get sorted list of top 50 most veiwed songs on Spotify Song Stats
+// Get list of top 50 most veiwed songs on Spotify Song Stats
 app.get("/api/top-viewed-songs", async (req, res) => {
     const data = await getTopSongs();
     res.status(data.status).send(data);
 });
 
 /* 
-Add increment views of song in db. 
-If song doesnt exist in db, add it with 1 view.
+    Add increment views of song in db. 
+    If song doesnt exist in db, add it with 1 view.
 */
 app.post("/api/viewed-song", async (req, res) => {
     const song = req.body;

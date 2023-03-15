@@ -5,8 +5,7 @@ import Typography from '@mui/material/Typography';
 import { Fade} from '@mui/material';
 import Link from '@mui/material/Link';
 import PopularityMeter from './PopularityMeter';
-import "./SongInfo.css" 
-import SongStats from './SongStats';
+import ColumnChart from './ColumnChart';
 import { NavLink } from 'react-router-dom';
 
 function StatsCard(props) {
@@ -29,7 +28,7 @@ function StatsCard(props) {
         }}
       >
         <CardContent >
-          <SongStats stats={props.stats} />
+          <ColumnChart stats={props.stats} />
           <PopularityMeter value={props.song ? props.song.popularity : 0}/>
           <Typography 
               variant="h5" 
@@ -49,4 +48,3 @@ function StatsCard(props) {
 };
 
 export default StatsCard;
-//<SongStats stats={props.stats} />

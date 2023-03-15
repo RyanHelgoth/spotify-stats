@@ -5,7 +5,7 @@ import { Divider, Fade } from "@mui/material";
 import { Box } from "@mui/system";
 
 // List of songs
-function SearchResults(props) {
+function SongList(props) {
 
   function displaySongs() {
     const lastSongIndex = props.songs.length - 1;
@@ -38,4 +38,4 @@ function SearchResults(props) {
   );
 };
 
-export default SearchResults;
+export default SongList;

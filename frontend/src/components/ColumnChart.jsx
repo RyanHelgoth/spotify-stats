@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Chart } from "react-google-charts";
 
-function SongStats(props) {
+function ColumnChart(props) {
 
   // Initially set all chart columns to 0%
   const [chartData, setChartData] = React.useState([
@@ -92,7 +92,7 @@ function SongStats(props) {
   );
 };
 
-export default SongStats;
+export default ColumnChart;
 
 
 

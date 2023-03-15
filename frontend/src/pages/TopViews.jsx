@@ -2,7 +2,7 @@ import React from "react";
 import { Stack } from "@mui/system";
 import { Fade, Pagination, Typography, Box} from "@mui/material";
 import NavBar from "../components/NavBar";
-import SearchResults from "../components/SearchResults";
+import SongList from "../components/SongList";
 import Loading from "../components/Loading";
 import { rankTopSongs } from "../helpers/interpretData.js"
 
@@ -14,7 +14,7 @@ function TopViews() {
 
   React.useEffect(() => {
     async function getTopSongs() {
-      setSongs([]); // Reset songs so loading animation shows after first search
+      setSongs([]); // Reset songs so loading animation 
       setLoading(true);
       const PATH = "api/top-viewed-songs";
       const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH);
@@ -78,7 +78,7 @@ function TopViews() {
       );
     }
     else if (songs.length === 0 && loading) {
-      // Waiting on search results
+      // Waiting on results
       return (
         <Loading height={"30vh"}/>
       );
@@ -112,7 +112,7 @@ function TopViews() {
           "Top Viewed Song Stats This Month"
         }
       </Typography>
-      <SearchResults songs={songs.slice(displayIndices[0], displayIndices[1])}/>
+      <SongList songs={songs.slice(displayIndices[0], displayIndices[1])}/>
       {displayPagination()}
     </Stack>
     </Box>

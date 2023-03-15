@@ -6,7 +6,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 import { getKeyString, getTimeSigString, getDateFormat, formatDuration} from "../helpers/interpretData.js"
 
-function InfoTable(props) {
+function SongInfoTable(props) {
 
   function createData(name, value) {
     return { name, value };
@@ -49,4 +49,4 @@ function InfoTable(props) {
   );
 };
 
-export default InfoTable;
+export default SongInfoTable;

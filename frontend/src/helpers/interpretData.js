@@ -93,14 +93,14 @@ function formatDuration(duration) {
 }
 
 /*
-  Sorts songs from most searches to least searches 
+  Sorts songs from most viewses to least viewss 
   and gives each song a rank based on their position
   after sorting.
 */
 function rankTopSongs(songs) {
   // Using spread to return new array
   const sortedSongs = [...songs].sort((lSong, rSong) => {
-    return rSong.searches - lSong.searches;
+    return rSong.views - lSong.views;
   });
 
   const rankedSongs = sortedSongs.map((song, index) => {

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Box from '@mui/material/Box';
 import NavBar from "../components/NavBar";
-import SongInfo from "../components/SongInfo";
+import SongInfoCard from "../components/SongInfoCard";
 import StatsCard from "../components/StatsCard";
 import Loading from "../components/Loading";
 import { extractSong, extractSongStats } from "../helpers/extractData.js"
@@ -124,7 +124,7 @@ function Stats() {
           textAlign: "center"
         }}
         >
-          <SongInfo song={song} stats={songStats} />
+          <SongInfoCard song={song} stats={songStats} />
           <StatsCard song={song} stats={songStats} />
         </Box>
         : 
