@@ -2,9 +2,6 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import schedule from "node-schedule";
 
-// mongod --dbpath '/f/git/spotify-stats/backend/data/db'
-//mongodb://127.0.0.1:27017/
-
 dotenv.config();
 connect();
 const Song = createModel();

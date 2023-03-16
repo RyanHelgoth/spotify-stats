@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
 import SongList from "../components/SongList";
 import Loading from "../components/Loading";
+import Error from "../components/Error";
 import { Stack } from "@mui/system";
 import { Fade, Pagination, Box } from "@mui/material";
 import { useSearchParams } from "react-router-dom";
@@ -13,6 +14,11 @@ function Search() {
   const [songs, setSongs] = React.useState([]);
   const [displayIndices, setDisplayIndices] = React.useState([0, 5]);
   const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState({error: false, title: null, desc: null});
+
+  function handleErrorClose() {
+    setError({error: false, title: null, desc: null});
+  };
 
   React.useEffect(() => {
     const query = searchParams.get("query");
@@ -32,12 +38,15 @@ function Search() {
             setSongs(extractedSongs);
           }
           else {
-            alert(`${data.status} Error: ${data.error.error}\n` +
-              `Error Description: ${data.error.error_description}`);
+            const title = `${data.status} Error: ${data.error.error}`;
+            const desc = `Error Description: ${data.error.error_description}`;
+            setError({error: true, title: title, desc: desc});
           }
         }
         catch (error) {
-          alert(`Error: ${error}`);
+          const title = "Error";
+          const desc = `Error Description: ${error}`;
+          setError({error: true, title: title, desc: desc});
         }
         finally {
           setLoading(false);
@@ -101,17 +110,25 @@ function Search() {
  
   return (
     <Box>
-    <NavBar />
-    <Stack 
-      width="100%" 
-      spacing={4} 
-      alignItems="center"
-      mb="5vh"
-    >
-      <SearchBar onSearch={setQuery}/>
-      <SongList songs={songs.slice(displayIndices[0], displayIndices[1])}/>
-      {displayPagination()}
-    </Stack>
+      <NavBar />
+      {error.error && 
+        <Error 
+          errorTitle={error.title} 
+          errorDesc={error.desc} 
+          handleClose={handleErrorClose}
+
+        />
+      }
+      <Stack 
+        width="100%" 
+        spacing={4} 
+        alignItems="center"
+        mb="5vh"
+      >
+        <SearchBar onSearch={setQuery}/>
+        <SongList songs={songs.slice(displayIndices[0], displayIndices[1])}/>
+        {displayPagination()}
+      </Stack>
     </Box>
   );
 };

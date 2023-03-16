@@ -6,12 +6,18 @@ import NavBar from "../components/NavBar";
 import SongInfoCard from "../components/SongInfoCard";
 import StatsCard from "../components/StatsCard";
 import Loading from "../components/Loading";
+import Error from "../components/Error";
 import { extractSong, extractSongStats } from "../helpers/extractData.js"
 
 function Stats() {
   const location = useLocation();
   const [song, setSong] = useState(null);
   const [songStats, setSongStats] = useState(null);
+  const [error, setError] = React.useState({error: false, title: null, desc: null});
+
+  function handleErrorClose() {
+    setError({error: false, title: null, desc: null});
+  };
 
   useEffect(() => {
     // Set songStats on render
@@ -29,12 +35,15 @@ function Stats() {
           setSongStats(stats);
         }
         else {
-          alert(`${data.status} Error: ${data.error.error}\n` +
-          `Error Description: ${data.error.error_description}`);
+          const title = `${data.status} Error: ${data.error.error}`;
+          const desc = `Error Description: ${data.error.error_description}`;
+          setError({error: true, title: title, desc: desc});
         }
       }
       catch (error) {
-        alert(`Error: ${error}`);
+        const title = "Error";
+        const desc = `Error Description: ${error}`;
+        setError({error: true, title: title, desc: desc});
       }
     }
 
@@ -60,12 +69,15 @@ function Stats() {
             setSong(extractedSong);   
           }
           else {
-            alert(`${data.status} Error: ${data.error.error}\n` +
-            `Error Description: ${data.error.error_description}`);
+            const title = `${data.status} Error: ${data.error.error}`;
+            const desc = `Error Description: ${data.error.error_description}`;
+            setError({error: true, title: title, desc: desc});
           }  
         }
         catch (error) {
-          alert(`Error: ${error}`);
+          const title = "Error";
+          const desc = `Error Description: ${error}`;
+          setError({error: true, title: title, desc: desc});
         }  
       };
 
@@ -115,6 +127,14 @@ function Stats() {
   return (
     <Box >
       <NavBar />
+      {error.error && 
+        <Error 
+          errorTitle={error.title} 
+          errorDesc={error.desc} 
+          handleClose={handleErrorClose}
+
+        />
+      }
       {song !== null && songStats !== null ? 
         <Box sx={{
           display: "flex",
