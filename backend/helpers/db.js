@@ -18,7 +18,8 @@ const clearViews = schedule.scheduleJob(cronSchedule, async () => {
 async function connect() {
     const options = {keepAlive: true}
     try {
-        await mongoose.connect(process.env.DB_URL + process.env.DB_NAME, options);
+        const url = process.env.DB_URL + process.env.DB_NAME + process.env.DB_OPTIONS;
+        await mongoose.connect(url, options);
         console.log("Connected to db");
     }
     catch (error) {
