@@ -18,7 +18,7 @@
   transition: 0.25s ease-in-out;
 }
 
-@media (hover: hover) {
+@media (pointer: coarse) {
   #album-box:hover > #album-cover {
     opacity: 0.5;
     transition: 0.25s ease-in-out;
