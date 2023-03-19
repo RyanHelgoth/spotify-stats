@@ -20,7 +20,7 @@ function SongInfoCard(props) {
 
       https://stackoverflow.com/a/57995447
     */
-    if (window.matchMedia("(hover: none)").matches) {
+    if (window.matchMedia("(pointer: coarse)").matches) {
       // Hover unavailable
       setIconID("play-icon-mobile");
     }
