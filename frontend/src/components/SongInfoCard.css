@@ -26,14 +26,12 @@
 }
 
 #play-button {
-  -webkit-tap-highlight-color: #212121;
+  -webkit-tap-highlight-color: transparent;
 }
 
-@media (pointer: fine) {
-  #play-button:focus {
-    opacity: 0.35;
-    transition: 0.15s ease-out;
-  }
+#play-button:focus {
+  opacity: 0.35;
+  transition: 0.15s ease-out;
 }
 
 
