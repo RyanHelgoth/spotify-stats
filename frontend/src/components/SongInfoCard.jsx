@@ -42,12 +42,6 @@ function SongInfoCard(props) {
         setIconID("play-icon-desktop");
       }, 200)
     }
-    else { 
-      // Icon does not fade out on touch devices
-      setTimeout(() => {
-        button.blur();
-      }, 200)
-    }
   };
 
   return (
