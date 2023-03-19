@@ -27,8 +27,8 @@ function Search() {
       async function getSongs(query) {
         setSongs([]); // Reset songs so loading animation shows after first search
         setLoading(true);
-        const PATH = "api/tracks";
-        const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH + "?track-name=" + query);
+        const PATH = "/api/tracks";
+        const URL = encodeURI(PATH + "?track-name=" + query);
 
         try {
           const response = await fetch(URL);

@@ -24,8 +24,8 @@ function Stats() {
     const songID = location.pathname.slice(7);
     
     async function getSongStats(ID) {
-      const path = `api/track-stats/${ID}`;
-      const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
+      const path = `/api/track-stats/${ID}`;
+      const url = encodeURI(path);
 
       try {
         const response = await fetch(url);
@@ -58,8 +58,8 @@ function Stats() {
     }
     else {
       async function getSong(ID) {
-        const path = `api/track/${ID}`;
-        const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
+        const path = `/api/track/${ID}`;
+        const url = encodeURI(path);
   
         try {
           const response = await fetch(url);
@@ -90,11 +90,11 @@ function Stats() {
   useEffect(() => {
     if (song) {
       async function addSearch(song) {
-        const path = "api/viewed-song";
-        const url = encodeURI(process.env.REACT_APP_SERVER_URL + path);
+        const path = "/api/viewed-song";
+        const url = encodeURI(path);
         const options = {
           method: "POST",
-          mode: "cors",
+          mode: "same-origin",
           headers: {
             "Accept": "application/json",
             "Content-Type": "application/json"

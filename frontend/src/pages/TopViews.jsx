@@ -22,8 +22,8 @@ function TopViews() {
     async function getTopSongs() {
       setSongs([]); // Reset songs so loading animation 
       setLoading(true);
-      const PATH = "api/top-viewed-songs";
-      const URL = encodeURI(process.env.REACT_APP_SERVER_URL + PATH);
+      const PATH = "/api/top-viewed-songs";
+      const URL = encodeURI(PATH);
       
       try {
         const response = await fetch(URL);

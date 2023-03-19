@@ -6,14 +6,11 @@ import "./index.css";
 import ScrollToTop from "./components/ScrollToTop";
 
 // https://hygraph.com/blog/routing-in-react
-//TODO get rid of strict mode when done development
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <ScrollToTop />
-      <App />
-    </BrowserRouter>
-  </React.StrictMode>
+  <BrowserRouter>
+    <ScrollToTop />
+    <App />
+  </BrowserRouter>
 );

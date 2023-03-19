@@ -1,0 +1,21 @@
+{
+  "name": "spotify-stats",
+  "version": "1.0.0",
+  "description": "Search for songs to view their stats from Spotify!",
+  "main": "index.js",
+  "scripts": {
+    "build": "cd backend && npm install && cd ../frontend && npm install && npm run build",
+    "start": "node backend/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanHelgoth/spotify-stats.git"
+  },
+  "author": "Ryan Helgoth",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RyanHelgoth/spotify-stats/issues"
+  },
+  "homepage": "https://github.com/RyanHelgoth/spotify-stats#readme"
+}
