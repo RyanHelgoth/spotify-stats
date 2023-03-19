@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/RyanHelgoth/spotify-stats/issues"
   },
-  "homepage": "https://github.com/RyanHelgoth/spotify-stats#readme"
+  "homepage": "https://github.com/RyanHelgoth/spotify-stats#readme",
+  "engines": {
+    "node": "18.14.1"
+  }
 }
