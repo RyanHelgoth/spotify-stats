@@ -130,8 +130,7 @@ function NavBar() {
               >
                 <Button
                   onClick={handleCloseNavMenu}
-                  sx={{
-                    my: 2, 
+                  sx={{      
                     color: 'white', 
                     display: 'block', 
                     fontWeight: 'inherit',
