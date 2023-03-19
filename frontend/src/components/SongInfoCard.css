@@ -29,7 +29,7 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-#play-button:active {
+#play-button:focus {
   opacity: 0.35;
   transition: 0.15s ease-out;
 }
