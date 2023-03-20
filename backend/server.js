@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { getTracks, getTrackStats, getTrack } from "./helpers/spotify.js";
 import { getTopSongs, upsertSong } from "./helpers/db.js";
 import * as path from 'path';
+import sslRedirect from "heroku-ssl-redirect";
 
 /*
     Used: https://github.com/basir/mern-amazona 
@@ -16,6 +17,7 @@ const PORT = process.env.PORT || "4000";
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "frontend/build")));
+app.use(sslRedirect());
 
 // Get list of 50 tracks based on search query
 app.get("/api/tracks", async (req, res) => {
