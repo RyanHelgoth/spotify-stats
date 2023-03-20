@@ -15,10 +15,11 @@ const app = express();
 const __dirname = path.resolve(); // https://stackoverflow.com/a/68163774
 const PORT = process.env.PORT || "4000";
 const sslRedirect = herokuSSLRedirect.default; // https://github.com/paulomcnally/node-heroku-ssl-redirect/issues/17#issuecomment-734242868
+app.use(sslRedirect());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "frontend/build")));
-app.use(sslRedirect());
+
 
 // Get list of 50 tracks based on search query
 app.get("/api/tracks", async (req, res) => {
