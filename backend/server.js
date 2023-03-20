@@ -1,9 +1,9 @@
+import herokuSSLRedirect from "heroku-ssl-redirect";
 import express from "express";
 import dotenv from "dotenv";
 import { getTracks, getTrackStats, getTrack } from "./helpers/spotify.js";
 import { getTopSongs, upsertSong } from "./helpers/db.js";
 import * as path from 'path';
-import herokuSSLRedirect from "heroku-ssl-redirect";
 
 /*
     Used: https://github.com/basir/mern-amazona 
