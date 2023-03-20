@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import { getTracks, getTrackStats, getTrack } from "./helpers/spotify.js";
 import { getTopSongs, upsertSong } from "./helpers/db.js";
 import * as path from 'path';
-import sslRedirect from "heroku-ssl-redirect";
+import herokuSSLRedirect from "heroku-ssl-redirect";
 
 /*
     Used: https://github.com/basir/mern-amazona 
@@ -14,6 +14,7 @@ dotenv.config();
 const app = express();
 const __dirname = path.resolve(); // https://stackoverflow.com/a/68163774
 const PORT = process.env.PORT || "4000";
+const sslRedirect = herokuSSLRedirect.default; // https://github.com/paulomcnally/node-heroku-ssl-redirect/issues/17#issuecomment-734242868
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "frontend/build")));
